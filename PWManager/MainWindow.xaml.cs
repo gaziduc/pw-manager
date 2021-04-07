@@ -35,7 +35,7 @@ namespace PWManager
 
         private void LoadItems()
         {
-            grid.ItemsSource = context.ServiceCredentials.Local.ToObservableCollection();
+            grid.ItemsSource = context.ServiceCredentials.ToList();
         }
 
         private void add_password_Click(object sender, RoutedEventArgs e)
