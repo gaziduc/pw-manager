@@ -12,7 +12,6 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using PWManager.Models;
 
 namespace PWManager
 {
@@ -21,29 +20,32 @@ namespace PWManager
     /// </summary>
     public partial class MainWindow : Window
     {
-        private PWManagerContext context;
+        private MainService.MainServiceClient _service;
         private AddPasswordWindow addPasswordWindow;
 
         public MainWindow()
         {
             InitializeComponent();
 
-            context = new PWManagerContext();
+            _service = new MainService.MainServiceClient();
 
             LoadItems();
         }
 
-        private void LoadItems()
+        private async void LoadItems()
         {
-            grid.ItemsSource = context.ServiceCredentials.ToList();
+            var tmp = await _service.GetAllServiceCredentialsAsync();
+            grid.ItemsSource = tmp;
         }
 
         private void add_password_Click(object sender, RoutedEventArgs e)
         {
-            addPasswordWindow = new AddPasswordWindow(context);
+           /* addPasswordWindow = new AddPasswordWindow(_service);
 
             addPasswordWindow.Owner = this;
             addPasswordWindow.ShowDialog();
+
+            */
 
             LoadItems();
         }

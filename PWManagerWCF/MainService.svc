@@ -1,0 +1,1 @@
+﻿<%@ ServiceHost Language="C#" Debug="true" Service="PWManagerWCF.MainService" CodeBehind="MainService.svc.cs" %>

@@ -9,7 +9,6 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using PWManager.Models;
 
 namespace PWManager
 {
@@ -18,18 +17,18 @@ namespace PWManager
     /// </summary>
     public partial class AddPasswordWindow : Window
     {
-        private PWManagerContext context;
+        // private PWManagerContext context;
 
-        public AddPasswordWindow(PWManagerContext context)
+        public AddPasswordWindow(/*PWManagerContext context*/)
         {
             InitializeComponent();
 
-            this.context = context;
+           // this.context = context;
         }
 
         private async void add_button_Click(object sender, RoutedEventArgs e)
         {
-            ServiceCredential entity = new ServiceCredential
+           /* ServiceCredential entity = new ServiceCredential
             {
                 Name = service_name.Text,
                 Url = url.Text,
@@ -41,7 +40,7 @@ namespace PWManager
 
             context.ServiceCredentials.Add(entity);
             await context.SaveChangesAsync();
-
+           */
             Close();
         }
     }
