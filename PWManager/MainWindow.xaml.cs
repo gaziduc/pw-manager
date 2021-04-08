@@ -20,14 +20,14 @@ namespace PWManager
     /// </summary>
     public partial class MainWindow : Window
     {
-        private MainService.MainServiceClient _service;
+        
         private AddPasswordWindow addPasswordWindow;
+        private MainService.MainServiceClient _service;
 
-        public MainWindow()
+        public MainWindow(MainService.MainServiceClient service)
         {
             InitializeComponent();
-
-            _service = new MainService.MainServiceClient();
+            this._service = service;
 
             LoadItems();
         }

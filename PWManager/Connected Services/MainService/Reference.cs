@@ -146,6 +146,15 @@ namespace MainService
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMainService/GetAllServiceCredentials", ReplyAction="http://tempuri.org/IMainService/GetAllServiceCredentialsResponse")]
         System.Threading.Tasks.Task<System.Collections.Generic.List<MainService.service_credentials>> GetAllServiceCredentialsAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMainService/LoginExists", ReplyAction="http://tempuri.org/IMainService/LoginExistsResponse")]
+        System.Threading.Tasks.Task<bool> LoginExistsAsync(string login);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMainService/IsCredentialsCorrect", ReplyAction="http://tempuri.org/IMainService/IsCredentialsCorrectResponse")]
+        System.Threading.Tasks.Task<bool> IsCredentialsCorrectAsync(string login, string password);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMainService/CreateUser", ReplyAction="http://tempuri.org/IMainService/CreateUserResponse")]
+        System.Threading.Tasks.Task<bool> CreateUserAsync(string login, string password);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.2")]
@@ -201,6 +210,21 @@ namespace MainService
         public System.Threading.Tasks.Task<System.Collections.Generic.List<MainService.service_credentials>> GetAllServiceCredentialsAsync()
         {
             return base.Channel.GetAllServiceCredentialsAsync();
+        }
+        
+        public System.Threading.Tasks.Task<bool> LoginExistsAsync(string login)
+        {
+            return base.Channel.LoginExistsAsync(login);
+        }
+        
+        public System.Threading.Tasks.Task<bool> IsCredentialsCorrectAsync(string login, string password)
+        {
+            return base.Channel.IsCredentialsCorrectAsync(login, password);
+        }
+        
+        public System.Threading.Tasks.Task<bool> CreateUserAsync(string login, string password)
+        {
+            return base.Channel.CreateUserAsync(login, password);
         }
         
         public virtual System.Threading.Tasks.Task OpenAsync()

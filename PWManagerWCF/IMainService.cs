@@ -14,5 +14,14 @@ namespace PWManagerWCF
     {
         [OperationContract]
         List<service_credentials> GetAllServiceCredentials();
+
+        [OperationContract]
+        bool LoginExists(string login);
+
+        [OperationContract]
+        bool IsCredentialsCorrect(string login, string password);
+
+        [OperationContract]
+        bool CreateUser(string login, string password);
     }
 }
