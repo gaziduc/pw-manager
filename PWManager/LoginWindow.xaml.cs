@@ -27,29 +27,15 @@ namespace PWManager
             _service = new MainService.MainServiceClient();
         }
 
-        public static byte[] GetHash(string inputString)
-        {
-            using (HashAlgorithm algorithm = SHA256.Create())
-                return algorithm.ComputeHash(Encoding.UTF8.GetBytes(inputString));
-        }
-
-        public static string GetHashString(string inputString)
-        {
-            StringBuilder sb = new StringBuilder();
-            foreach (byte b in GetHash(inputString))
-                sb.Append(b.ToString("X2"));
-
-            return sb.ToString();
-        }
         private async void signin_button_Click(object sender, RoutedEventArgs e)
         {
             string login = login_textbox.Text;
-            string password = password_textbox.Text;
-            string hash = GetHashString(password);
+            string password = password_textbox.Password;
+            string hash = PWManagerWCF.Cryptography.GetHashString(password);
 
             if (!await _service.IsCredentialsCorrectAsync(login, hash))
             {
-                MessageBox.Show("Incorrect password or login", "PWManager", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Incorrect login or password.", "PW Manager", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
             
@@ -57,6 +43,14 @@ namespace PWManager
             mainWindow.Show();
 
             this.Close();
+        }
+
+        private void signup_button_Click(object sender, RoutedEventArgs e)
+        {
+            SignUpWindow signUpWindow = new SignUpWindow();
+
+            signUpWindow.Owner = Window.GetWindow(this);
+            signUpWindow.ShowDialog();
         }
     }
 }

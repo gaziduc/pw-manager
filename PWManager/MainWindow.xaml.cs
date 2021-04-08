@@ -40,12 +40,10 @@ namespace PWManager
 
         private void add_password_Click(object sender, RoutedEventArgs e)
         {
-           /* addPasswordWindow = new AddPasswordWindow(_service);
+            addPasswordWindow = new AddPasswordWindow(_service);
 
-            addPasswordWindow.Owner = this;
+            addPasswordWindow.Owner = Window.GetWindow(this);
             addPasswordWindow.ShowDialog();
-
-            */
 
             LoadItems();
         }

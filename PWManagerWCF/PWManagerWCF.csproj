@@ -75,6 +75,7 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Cryptography.cs" />
     <Compile Include="EntityModel.cs" />
     <Compile Include="IMainService.cs" />
     <Compile Include="MainService.svc.cs">

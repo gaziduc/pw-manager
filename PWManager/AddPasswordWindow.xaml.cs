@@ -17,16 +17,16 @@ namespace PWManager
     /// </summary>
     public partial class AddPasswordWindow : Window
     {
-        // private PWManagerContext context;
+        private MainService.MainServiceClient _service;
 
-        public AddPasswordWindow(/*PWManagerContext context*/)
+        public AddPasswordWindow(MainService.MainServiceClient service)
         {
             InitializeComponent();
 
-           // this.context = context;
+            _service = service;
         }
 
-        private async void add_button_Click(object sender, RoutedEventArgs e)
+        private /*async*/ void add_button_Click(object sender, RoutedEventArgs e)
         {
            /* ServiceCredential entity = new ServiceCredential
             {
