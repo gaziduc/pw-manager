@@ -11,7 +11,6 @@ namespace PWManagerWCF.Models
     [DataContract]
     public class service_credentials
     {
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         [DataMember]
         public long id { get; set; }
 

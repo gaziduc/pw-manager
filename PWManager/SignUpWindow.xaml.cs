@@ -17,9 +17,40 @@ namespace PWManager
     /// </summary>
     public partial class SignUpWindow : Window
     {
-        public SignUpWindow()
+        private MainService.MainServiceClient _service;
+        public SignUpWindow(MainService.MainServiceClient service)
         {
             InitializeComponent();
+
+            _service = service;
+        }
+
+        private async void Button_Click(object sender, RoutedEventArgs e)
+        {
+            if (await _service.LoginExistsAsync(login_textbox.Text))
+            {
+                MessageBox.Show("Sorry, this login is already use, choose another one", "PW Manager", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+
+            if (login_textbox.Text.Length == 0 || password_textbox.Password.Length == 0 || password_confirmation_textbox.Password.Length == 0)
+            {
+                MessageBox.Show("One of the field is empty, please verify all the fiels", "PW Manager", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+            
+            if (!password_textbox.Password.Equals(password_confirmation_textbox.Password))
+            {
+                MessageBox.Show("The passwords are not the same", "PW Manager", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+
+            await _service.CreateUserAsync(login_textbox.Text, password_textbox.Password);
+
+            MainWindow mainWindow = new MainWindow(_service);
+            mainWindow.Show();
+
+            this.Close();
         }
     }
 }

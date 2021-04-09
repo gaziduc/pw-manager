@@ -47,7 +47,7 @@ namespace PWManager
 
         private void signup_button_Click(object sender, RoutedEventArgs e)
         {
-            SignUpWindow signUpWindow = new SignUpWindow();
+            SignUpWindow signUpWindow = new SignUpWindow(_service);
 
             signUpWindow.Owner = Window.GetWindow(this);
             signUpWindow.ShowDialog();
