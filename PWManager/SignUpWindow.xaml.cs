@@ -54,9 +54,14 @@ namespace PWManager
                     return;
                 }
 
-                await _service.CreateUserAsync(login_textbox.Text, password_textbox.Password);
+                var res = await _service.CreateUserAsync(login_textbox.Text, password_textbox.Password);
+                if (res.Item1 == -1)
+                {
+                    MessageBox.Show(res.Item2, "PW Manager sign up error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return;
+                }
 
-                MainWindow mainWindow = new MainWindow(_service);
+                MainWindow mainWindow = new MainWindow(_service, res.Item1);
                 mainWindow.Show();
 
                 this.Close();

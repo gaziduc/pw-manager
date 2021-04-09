@@ -26,9 +26,9 @@ namespace PWManagerWCF
         }
 
  
-        public List<service_credentials> GetAllServiceCredentials()
+        public List<service_credentials> GetAllServiceCredentials(long user_id)
         {
-            return ents.ServiceCredentials.ToList();
+            return ents.ServiceCredentials.Where(x => x.user_id == user_id).ToList();
         }
 
         public bool LoginExists(string login)
@@ -36,12 +36,16 @@ namespace PWManagerWCF
             return ents.Users.FirstOrDefault(user => user.login.Equals(login)) != null;
         }
 
-        public bool IsCredentialsCorrect(string login, string password)
+        public long GetUserFromCrdentials(string login, string password)
         {
-            return ents.Users.FirstOrDefault(user => user.login.Equals(login) && user.password.Equals(password)) != null;
+            var user = ents.Users.FirstOrDefault(u => u.login.Equals(login) && u.password.Equals(password));
+            if (user == null)
+                return -1;
+
+            return user.id;
         }
 
-        public bool CreateUser(string login, string password)
+        public (long, string) CreateUser(string login, string password)
         {
             try
             {
@@ -52,12 +56,35 @@ namespace PWManagerWCF
                     password = hash
                 });
                 ents.SaveChanges();
-                return true;
+
+                return (ents.Users.FirstOrDefault(x => x.login == login && x.password == hash).id, null);
             }
             catch (Exception e)
             {
-                Console.WriteLine(e.Message);
-                return false;
+                return (-1, e.Message);
+            }
+        }
+
+        public (bool, string) CreateService(string name, string url, string login, string password, long user_id, short category_id)
+        {
+            try
+            {
+                ents.ServiceCredentials.Add(new service_credentials
+                {
+                    name = name,
+                    url = url,
+                    login = login,
+                    password = password,
+                    user_id = user_id,
+                    category_id = category_id,
+                    is_favorite = false 
+                });
+                ents.SaveChanges();
+                return (true, null);
+            }
+            catch (Exception e)
+            {
+                return (false, e.Message);
             }
         }
     }

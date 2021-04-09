@@ -23,24 +23,27 @@ namespace PWManager
         
         private AddPasswordWindow addPasswordWindow;
         private MainService.MainServiceClient _service;
+        private long user_id;
 
-        public MainWindow(MainService.MainServiceClient service)
+        public MainWindow(MainService.MainServiceClient service, long user_id)
         {
             InitializeComponent();
             this._service = service;
+
+            this.user_id = user_id;
 
             LoadItems();
         }
 
         private async void LoadItems()
         {
-            var tmp = await _service.GetAllServiceCredentialsAsync();
+            var tmp = await _service.GetAllServiceCredentialsAsync(user_id);
             grid.ItemsSource = tmp;
         }
 
         private void add_password_Click(object sender, RoutedEventArgs e)
         {
-            addPasswordWindow = new AddPasswordWindow(_service);
+            addPasswordWindow = new AddPasswordWindow(_service, user_id);
 
             addPasswordWindow.Owner = Window.GetWindow(this);
             addPasswordWindow.ShowDialog();

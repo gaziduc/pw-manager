@@ -40,13 +40,14 @@ namespace PWManager
             string password = password_textbox.Password;
             string hash = PWManagerWCF.Cryptography.GetHashString(password);
 
-            if (!await _service.IsCredentialsCorrectAsync(login, hash))
+            long user_id = await _service.GetUserFromCrdentialsAsync(login, hash);
+            if (user_id == -1)
             {
                 MessageBox.Show("Incorrect login or password.", "PW Manager", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
             
-            MainWindow mainWindow = new MainWindow(_service);
+            MainWindow mainWindow = new MainWindow(_service, user_id);
             mainWindow.Show();
 
             Close();

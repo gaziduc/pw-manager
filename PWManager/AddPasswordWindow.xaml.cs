@@ -18,29 +18,20 @@ namespace PWManager
     public partial class AddPasswordWindow : Window
     {
         private MainService.MainServiceClient _service;
+        private long user_id;
 
-        public AddPasswordWindow(MainService.MainServiceClient service)
+        public AddPasswordWindow(MainService.MainServiceClient service, long user_id)
         {
             InitializeComponent();
 
             _service = service;
+            this.user_id = user_id;
         }
 
-        private /*async*/ void add_button_Click(object sender, RoutedEventArgs e)
+        private async void add_button_Click(object sender, RoutedEventArgs e)
         {
-           /* ServiceCredential entity = new ServiceCredential
-            {
-                Name = service_name.Text,
-                Url = url.Text,
-                Login = login.Text,
-                Password = password.Text,
-                UserId = 1,
-                CategoryId = 1
-            };
+            await _service.CreateServiceAsync(service_name.Text, url.Text, login.Text, password.Text, user_id, 1);
 
-            context.ServiceCredentials.Add(entity);
-            await context.SaveChangesAsync();
-           */
             Close();
         }
     }
