@@ -45,6 +45,12 @@ namespace PWManager
                 return;
             }
 
+            if (!PWManagerWCF.Password.IsValid(password_textbox.Password))
+            {
+                MessageBox.Show("Your password has to follow the CNIL specification", "PW Manager", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+
             await _service.CreateUserAsync(login_textbox.Text, password_textbox.Password);
 
             MainWindow mainWindow = new MainWindow(_service);
