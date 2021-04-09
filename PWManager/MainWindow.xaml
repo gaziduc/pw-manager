@@ -5,14 +5,15 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PWManager"
         mc:Ignorable="d"
-        Title="PWManager" Height="450" Width="800"
-        WindowStartupLocation="CenterScreen">
+        Title="PW Manager" Height="450" Width="800"
+        WindowStartupLocation="CenterScreen"
+        ResizeMode="CanResizeWithGrip">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="40" />
             <RowDefinition MinHeight="60" Height="*"/>
         </Grid.RowDefinitions>
-        <Button Grid.Row="0" Name="add_password" Width="100" Content="Add password..." Margin="5,5,5,5" HorizontalAlignment="Left" Click="add_password_Click"/>
+        <Button Grid.Row="0" Name="add_password" Width="100" Content="Add a service..." Margin="5,5,5,5" HorizontalAlignment="Left" Click="add_password_Click"/>
         <DataGrid Grid.Row="1" Name="grid" AutoGenerateColumns="False">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Service Name" Binding="{Binding name}" MinWidth="50" Width="auto"/>

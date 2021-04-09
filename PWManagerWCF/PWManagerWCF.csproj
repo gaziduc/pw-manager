@@ -85,7 +85,7 @@
     <Compile Include="Models\Infrastructure\PWManagerConfiguration.cs" />
     <Compile Include="Models\service_credentials.cs" />
     <Compile Include="Models\users.cs" />
-    <Compile Include="Password.cs" />
+    <Compile Include="PasswordStrenght.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

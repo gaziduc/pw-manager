@@ -18,6 +18,7 @@ namespace PWManager
     public partial class SignUpWindow : Window
     {
         private MainService.MainServiceClient _service;
+
         public SignUpWindow(MainService.MainServiceClient service)
         {
             InitializeComponent();
@@ -25,38 +26,69 @@ namespace PWManager
             _service = service;
         }
 
-        private async void Button_Click(object sender, RoutedEventArgs e)
+        private async void sign_up_Click(object sender, RoutedEventArgs e)
         {
-            if (await _service.LoginExistsAsync(login_textbox.Text))
+            if (login_textbox.Text.Length == 0)
             {
-                MessageBox.Show("Sorry, this login is already use, choose another one", "PW Manager", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Login field cannot be empty.", "PW Manager sign up error", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
 
-            if (login_textbox.Text.Length == 0 || password_textbox.Password.Length == 0 || password_confirmation_textbox.Password.Length == 0)
+            var strenght = PWManagerWCF.PasswordStrenght.IsValidMasterPassword(password_textbox.Password);
+
+            if (strenght.isTooShort)
+                MessageBox.Show("Your password must have more than 12 characters.", "PW Manager sign up error", MessageBoxButton.OK, MessageBoxImage.Error);
+            else if (strenght.isMissingUppercaseLetter)
+                MessageBox.Show("Your password must have at least one uppercase character.", "PW Manager sign up error", MessageBoxButton.OK, MessageBoxImage.Error);
+            else if (strenght.isMissingLowercaseLetter)
+                MessageBox.Show("Your password must have at least one lowercase character.", "PW Manager sign up error", MessageBoxButton.OK, MessageBoxImage.Error);
+            else if (strenght.isMissingNumber)
+                MessageBox.Show("Your password must have at least one digit.", "PW Manager sign up error", MessageBoxButton.OK, MessageBoxImage.Error);
+            else if (strenght.isMissingSpecialCharacter)
+                MessageBox.Show("Your password must have at least one special character.", "PW Manager sign up error", MessageBoxButton.OK, MessageBoxImage.Error);
+            else
             {
-                MessageBox.Show("One of the field is empty, please verify all the fiels", "PW Manager", MessageBoxButton.OK, MessageBoxImage.Error);
-                return;
+                if (await _service.LoginExistsAsync(login_textbox.Text))
+                {
+                    MessageBox.Show("This login is already used, please choose another one.", "PW Manager sign up error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return;
+                }
+
+                await _service.CreateUserAsync(login_textbox.Text, password_textbox.Password);
+
+                MainWindow mainWindow = new MainWindow(_service);
+                mainWindow.Show();
+
+                this.Close();
             }
             
-            if (!password_textbox.Password.Equals(password_confirmation_textbox.Password))
+        }
+
+        private void OnPasswordChanged(object sender, RoutedEventArgs e)
+        {
+            if (String.IsNullOrEmpty(password_textbox.Password))
             {
-                MessageBox.Show("The passwords are not the same", "PW Manager", MessageBoxButton.OK, MessageBoxImage.Error);
+                strenght_progress.Value = 0.0;
+                hint_text.Text = "";
                 return;
             }
 
-            if (!PWManagerWCF.Password.IsValid(password_textbox.Password))
-            {
-                MessageBox.Show("Your password has to follow the CNIL specification", "PW Manager", MessageBoxButton.OK, MessageBoxImage.Error);
-                return;
-            }
+            var result = Zxcvbn.Core.EvaluatePassword(password_textbox.Password);
+            strenght_progress.Value = result.Score * 25;
 
-            await _service.CreateUserAsync(login_textbox.Text, password_textbox.Password);
+            if (!String.IsNullOrEmpty(result.Feedback.Warning))
+                hint_text.Text = "Warning: " + result.Feedback.Warning + "\n";
+            else
+                hint_text.Text = "";
+        }
 
-            MainWindow mainWindow = new MainWindow(_service);
-            mainWindow.Show();
+        private void login_button_Click(object sender, RoutedEventArgs e)
+        {
+            LoginWindow login = new LoginWindow(_service);
 
-            this.Close();
+            login.Show();
+
+            Close();
         }
     }
 }

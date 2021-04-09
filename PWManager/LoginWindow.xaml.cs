@@ -27,6 +27,13 @@ namespace PWManager
             _service = new MainService.MainServiceClient();
         }
 
+        public LoginWindow(MainService.MainServiceClient service)
+        {
+            InitializeComponent();
+
+            _service = service;
+        }
+
         private async void signin_button_Click(object sender, RoutedEventArgs e)
         {
             string login = login_textbox.Text;
@@ -42,15 +49,16 @@ namespace PWManager
             MainWindow mainWindow = new MainWindow(_service);
             mainWindow.Show();
 
-            this.Close();
+            Close();
         }
 
         private void signup_button_Click(object sender, RoutedEventArgs e)
         {
             SignUpWindow signUpWindow = new SignUpWindow(_service);
 
-            signUpWindow.Owner = Window.GetWindow(this);
-            signUpWindow.ShowDialog();
+            signUpWindow.Show();
+
+            Close();
         }
     }
 }
