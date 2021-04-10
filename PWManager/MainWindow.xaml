@@ -20,6 +20,13 @@
                 <DataGridTextColumn Header="URL" Binding="{Binding url}" MinWidth="50" Width="auto"/>
                 <DataGridTextColumn Header="Login" Binding="{Binding login}" MinWidth="50" Width="auto"/>
                 <DataGridTextColumn Header="Password" Binding="{Binding password}" MinWidth="50" Width="*"/>
+                <DataGridTemplateColumn Header="Favorite">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Name="btnFavorite" Content="Add to favorite"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
             </DataGrid.Columns>
         </DataGrid>
     </Grid>
