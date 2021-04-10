@@ -21,12 +21,17 @@
                 <DataGridTextColumn Header="URL" Binding="{Binding url}" MinWidth="50" Width="auto"/>
                 <DataGridTextColumn Header="Login" Binding="{Binding login}" MinWidth="50" Width="auto"/>
                 <DataGridTextColumn Header="Password" Binding="{Binding password}" MinWidth="50" Width="*"/>
-                <DataGridTemplateColumn Header="Fav." CanUserResize="False" Width="24">
+                <DataGridTemplateColumn Header="Fav" CanUserResize="False" MinWidth="20">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Button Width="20" Height="20" BorderBrush="White" Background="White" ToolTip="Add/Remove in favorites">
-                                <Image Source="/Images/favorite.png" />
+                            <Button Name="favorite_button" Width="20" Height="20" BorderBrush="White" Background="White" ToolTip="Add/Remove in favorites" Click="favorite_button_Click">
+                                <Image Name="favoriteImg" Source="/Images/favorite_empty.png" />
                             </Button>
+                            <DataTemplate.Triggers>
+                                <DataTrigger Binding="{Binding is_favorite}" Value="True">
+                                    <Setter TargetName="favoriteImg" Property="Source" Value="/Images/favorite_full.png"/>
+                                </DataTrigger>
+                            </DataTemplate.Triggers>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>

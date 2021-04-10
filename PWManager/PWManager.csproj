@@ -8,6 +8,8 @@
 
   <ItemGroup>
     <None Remove="favorite.png" />
+    <None Remove="Images\favorite_empty.png" />
+    <None Remove="Images\favorite_full.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -29,6 +31,8 @@
 
   <ItemGroup>
     <Resource Include="Images\favorite.png" />
+    <Resource Include="Images\favorite_empty.png" />
+    <Resource Include="Images\favorite_full.png" />
   </ItemGroup>
 
   <ItemGroup>

@@ -1,9 +1,6 @@
 ﻿{
   "ProviderId": "Microsoft.VisualStudio.ConnectedService.Wcf",
   "Version": "15.0.40203.910",
-  "GettingStartedDocument": {
-    "Uri": "https://go.microsoft.com/fwlink/?linkid=858517"
-  },
   "ExtendedData": {
     "inputs": [
       "http://localhost:57161/MainService.svc"
@@ -16,8 +13,8 @@
       "*, MainService"
     ],
     "references": [
-      "C:\\Users\\Gazi\\Documents\\GitHub\\pw-manager\\PWManager\\bin\\Debug\\netcoreapp3.1\\EntityFramework.dll",
-      "C:\\Users\\Gazi\\Documents\\GitHub\\pw-manager\\PWManager\\bin\\Debug\\netcoreapp3.1\\PWManagerWCF.dll",
+      "C:\\Users\\PC\\Desktop\\pw-manager\\PWManager\\bin\\Debug\\netcoreapp3.1\\EntityFramework.dll",
+      "C:\\Users\\PC\\Desktop\\pw-manager\\PWManager\\bin\\Debug\\netcoreapp3.1\\PWManagerWCF.dll",
       "Microsoft.Data.SqlClient, {Microsoft.Data.SqlClient, 2.0.1}",
       "Microsoft.EntityFrameworkCore, {Microsoft.EntityFrameworkCore, 5.0.5}",
       "Microsoft.EntityFrameworkCore.Abstractions, {Microsoft.EntityFrameworkCore.Abstractions, 5.0.5}",

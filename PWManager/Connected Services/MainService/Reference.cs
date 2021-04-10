@@ -33,6 +33,9 @@ namespace MainService
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMainService/CreateService", ReplyAction="http://tempuri.org/IMainService/CreateServiceResponse")]
         System.Threading.Tasks.Task<System.ValueTuple<bool, string>> CreateServiceAsync(string name, string url, string login, string password, long user_id, short category_id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMainService/ChangeFavoriteStatus", ReplyAction="http://tempuri.org/IMainService/ChangeFavoriteStatusResponse")]
+        System.Threading.Tasks.Task<System.ValueTuple<bool, string>> ChangeFavoriteStatusAsync(long service_id, bool is_favorite);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.2")]
@@ -113,6 +116,11 @@ namespace MainService
         public System.Threading.Tasks.Task<System.ValueTuple<bool, string>> CreateServiceAsync(string name, string url, string login, string password, long user_id, short category_id)
         {
             return base.Channel.CreateServiceAsync(name, url, login, password, user_id, category_id);
+        }
+        
+        public System.Threading.Tasks.Task<System.ValueTuple<bool, string>> ChangeFavoriteStatusAsync(long service_id, bool is_favorite)
+        {
+            return base.Channel.ChangeFavoriteStatusAsync(service_id, is_favorite);
         }
         
         public virtual System.Threading.Tasks.Task OpenAsync()

@@ -93,6 +93,19 @@ namespace PWManagerWCF
                 return (false, e.Message);
             }
         }
+
+        public (bool, string) ChangeFavoriteStatus(long service_id, bool is_favorite)
+        {
+            try
+            {
+                var service = ents.ServiceCredentials.FirstOrDefault(serv => serv.id == service_id).is_favorite = !is_favorite;
+                ents.SaveChanges();
+                return (true, null);
+            } catch (Exception e)
+            {
+                return (false, e.Message);
+            }
+        }
     }
 
 }

@@ -29,5 +29,9 @@ namespace PWManagerWCF
 
         [OperationContract]
         (bool, string) CreateService(string name, string url, string login, string password, long user_id, short category_id);
+
+        [OperationContract]
+        (bool, string) ChangeFavoriteStatus(long service_id, bool is_favorite);
+
     }
 }
