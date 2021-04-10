@@ -25,18 +25,14 @@ namespace PWManager
             InitializeComponent();
 
             _service = new MainService.MainServiceClient();
+
+            login_combo_box.ItemsSource = _service.GetAllUsersLoginAsync().Result;
         }
 
-        public LoginWindow(MainService.MainServiceClient service)
-        {
-            InitializeComponent();
-
-            _service = service;
-        }
 
         private async void signin_button_Click(object sender, RoutedEventArgs e)
         {
-            string login = login_textbox.Text;
+            string login = login_combo_box.Text;
             string password = password_textbox.Password;
             string hash = PWManagerWCF.Cryptography.GetHashString(password);
 

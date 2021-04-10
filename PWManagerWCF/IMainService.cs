@@ -22,6 +22,9 @@ namespace PWManagerWCF
         long GetUserFromCrdentials(string login, string password);
 
         [OperationContract]
+        List<string> GetAllUsersLogin();
+
+        [OperationContract]
         (long, string) CreateUser(string login, string password);
 
         [OperationContract]

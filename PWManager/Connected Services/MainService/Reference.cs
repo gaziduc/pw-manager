@@ -25,6 +25,9 @@ namespace MainService
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMainService/GetUserFromCrdentials", ReplyAction="http://tempuri.org/IMainService/GetUserFromCrdentialsResponse")]
         System.Threading.Tasks.Task<long> GetUserFromCrdentialsAsync(string login, string password);
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMainService/GetAllUsersLogin", ReplyAction="http://tempuri.org/IMainService/GetAllUsersLoginResponse")]
+        System.Threading.Tasks.Task<System.Collections.Generic.List<string>> GetAllUsersLoginAsync();
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMainService/CreateUser", ReplyAction="http://tempuri.org/IMainService/CreateUserResponse")]
         System.Threading.Tasks.Task<System.ValueTuple<long, string>> CreateUserAsync(string login, string password);
         
@@ -95,6 +98,11 @@ namespace MainService
         public System.Threading.Tasks.Task<long> GetUserFromCrdentialsAsync(string login, string password)
         {
             return base.Channel.GetUserFromCrdentialsAsync(login, password);
+        }
+        
+        public System.Threading.Tasks.Task<System.Collections.Generic.List<string>> GetAllUsersLoginAsync()
+        {
+            return base.Channel.GetAllUsersLoginAsync();
         }
         
         public System.Threading.Tasks.Task<System.ValueTuple<long, string>> CreateUserAsync(string login, string password)

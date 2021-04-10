@@ -36,6 +36,12 @@ namespace PWManagerWCF
             return ents.Users.FirstOrDefault(user => user.login.Equals(login)) != null;
         }
 
+        public List<string> GetAllUsersLogin()
+        {
+            var query = from users in ents.Users select users.login;
+            return query.ToList();
+        }
+
         public long GetUserFromCrdentials(string login, string password)
         {
             var user = ents.Users.FirstOrDefault(u => u.login.Equals(login) && u.password.Equals(password));

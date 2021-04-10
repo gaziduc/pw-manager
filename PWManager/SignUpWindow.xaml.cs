@@ -89,7 +89,7 @@ namespace PWManager
 
         private void login_button_Click(object sender, RoutedEventArgs e)
         {
-            LoginWindow login = new LoginWindow(_service);
+            LoginWindow login = new LoginWindow();
 
             login.Show();
 

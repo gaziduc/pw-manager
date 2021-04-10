@@ -10,12 +10,12 @@
         ResizeMode="CanMinimize">
     <Grid>
         <Label Content="Login" HorizontalAlignment="Left" Margin="166,71,0,0" VerticalAlignment="Top"/>
-        <TextBox Name="login_textbox" HorizontalAlignment="Left" Margin="211,75,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
         <Label Content="Password" HorizontalAlignment="Left" Margin="146,106,0,0" VerticalAlignment="Top"/>
         <PasswordBox Name="password_textbox" HorizontalAlignment="Left" Margin="211,110,0,0" VerticalAlignment="Top" Width="120"/>
         <Button Name="signin_button" Content="Sign in" HorizontalAlignment="Center" Margin="0,145,0,0" VerticalAlignment="Top" Width="131" Click="signin_button_Click"/>
         <Button Name="signup_button" Content="Sign up..." HorizontalAlignment="Center" Margin="0,254,0,0" VerticalAlignment="Top" Width="132" Click="signup_button_Click"/>
         <Label Content="Login" HorizontalAlignment="Center" Margin="0,22,0,0" VerticalAlignment="Top" FontSize="20" FontWeight="Normal"/>
         <Label Content="Or sign up" HorizontalAlignment="Center" Margin="0,212,0,0" VerticalAlignment="Top" FontSize="20" FontWeight="Normal"/>
+        <ComboBox Name="login_combo_box" IsEditable="True" HorizontalAlignment="Left" Margin="211,72,0,0" VerticalAlignment="Top" Width="120" Height="24"/>
     </Grid>
 </Window>
