@@ -34,7 +34,7 @@ namespace PWManager
                 return;
             }
 
-            var strenght = PWManagerWCF.PasswordStrenght.IsValidMasterPassword(password_textbox.Password);
+            var strenght = new PWManagerWCF.PasswordStrenght(password_textbox.Password);
 
             if (strenght.isTooShort)
                 MessageBox.Show("Your password must have more than 12 characters.", "PW Manager sign up error", MessageBoxButton.OK, MessageBoxImage.Error);
