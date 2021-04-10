@@ -7,6 +7,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="favorite.png" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="5.0.5" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="5.0.5">
       <PrivateAssets>all</PrivateAssets>
@@ -21,6 +25,10 @@
 
   <ItemGroup>
     <ProjectReference Include="..\PWManagerWCF\PWManagerWCF.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Images\favorite.png" />
   </ItemGroup>
 
   <ItemGroup>

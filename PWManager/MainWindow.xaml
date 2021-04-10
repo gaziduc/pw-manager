@@ -10,9 +10,10 @@
         ResizeMode="CanResizeWithGrip">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="40" />
+            <RowDefinition Height="30" />
             <RowDefinition MinHeight="60" Height="*"/>
         </Grid.RowDefinitions>
+        
         <Button Grid.Row="0" Name="add_password" Width="100" Content="Add a service..." Margin="5,5,5,5" HorizontalAlignment="Left" Click="add_password_Click"/>
         <DataGrid IsReadOnly="True" Grid.Row="1" Name="grid" AutoGenerateColumns="False">
             <DataGrid.Columns>
@@ -20,10 +21,12 @@
                 <DataGridTextColumn Header="URL" Binding="{Binding url}" MinWidth="50" Width="auto"/>
                 <DataGridTextColumn Header="Login" Binding="{Binding login}" MinWidth="50" Width="auto"/>
                 <DataGridTextColumn Header="Password" Binding="{Binding password}" MinWidth="50" Width="*"/>
-                <DataGridTemplateColumn Header="Favorite">
+                <DataGridTemplateColumn Header="Fav." CanUserResize="False" Width="24">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Button Name="btnFavorite" Content="Add to favorite"/>
+                            <Button Width="20" Height="20" BorderBrush="White" Background="White" ToolTip="Add/Remove in favorites">
+                                <Image Source="/Images/favorite.png" />
+                            </Button>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
