@@ -7,11 +7,12 @@
         mc:Ignorable="d"
         Title="PW Manager login" Height="350" Width="500"
         WindowStartupLocation="CenterScreen"
-        ResizeMode="CanMinimize">
+        ResizeMode="CanMinimize"
+        Background="#FFD7ECFF">
     <Grid>
         <Label Content="Login" HorizontalAlignment="Left" Margin="166,71,0,0" VerticalAlignment="Top"/>
         <Label Content="Password" HorizontalAlignment="Left" Margin="146,106,0,0" VerticalAlignment="Top"/>
-        <PasswordBox Name="password_textbox" HorizontalAlignment="Left" Margin="211,110,0,0" VerticalAlignment="Top" Width="120"/>
+        <PasswordBox Name="password_textbox" HorizontalAlignment="Left" Margin="211,110,0,0" VerticalAlignment="Top" Width="120" KeyDown="password_textbox_Enter"/>
         <Button Name="signin_button" Content="Sign in" HorizontalAlignment="Center" Margin="0,145,0,0" VerticalAlignment="Top" Width="131" Click="signin_button_Click"/>
         <Button Name="signup_button" Content="Sign up..." HorizontalAlignment="Center" Margin="0,254,0,0" VerticalAlignment="Top" Width="132" Click="signup_button_Click"/>
         <Label Content="Login" HorizontalAlignment="Center" Margin="0,22,0,0" VerticalAlignment="Top" FontSize="20" FontWeight="Normal"/>

@@ -30,7 +30,7 @@ namespace PWManager
         }
 
 
-        private async void signin_button_Click(object sender, RoutedEventArgs e)
+        private async void SignIn()
         {
             string login = login_combo_box.Text;
             string password = password_textbox.Password;
@@ -42,11 +42,16 @@ namespace PWManager
                 MessageBox.Show("Incorrect login or password.", "PW Manager", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
-            
+
             MainWindow mainWindow = new MainWindow(_service, user_id);
             mainWindow.Show();
 
             Close();
+        }
+
+        private void signin_button_Click(object sender, RoutedEventArgs e)
+        {
+            SignIn();
         }
 
         private void signup_button_Click(object sender, RoutedEventArgs e)
@@ -56,6 +61,12 @@ namespace PWManager
             signUpWindow.Show();
 
             Close();
+        }
+
+        private void password_textbox_Enter(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Return)
+                SignIn();
         }
     }
 }

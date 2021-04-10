@@ -7,7 +7,8 @@
         mc:Ignorable="d"
         Title="PW Manager Sign up" Height="400" Width="700"
         WindowStartupLocation="CenterScreen"
-        ResizeMode="CanMinimize">
+        ResizeMode="CanMinimize"
+        Background="#FFD7ECFF">
     <Grid>
         <TextBox Name="login_textbox" HorizontalAlignment="Left" Margin="261,68,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="175" RenderTransformOrigin="0.575,0.559"/>
         <Label Content="Sign up" HorizontalAlignment="Left" Margin="310,10,0,0" VerticalAlignment="Top" FontSize="20"/>
