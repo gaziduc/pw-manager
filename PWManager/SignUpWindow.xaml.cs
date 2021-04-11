@@ -73,13 +73,22 @@ namespace PWManager
         {
             if (String.IsNullOrEmpty(password_textbox.Password))
             {
-                strenght_progress.Value = 0.0;
+                strenght_progress.Width = 0;
                 hint_text.Text = "";
                 return;
             }
 
             var result = Zxcvbn.Core.EvaluatePassword(password_textbox.Password);
-            strenght_progress.Value = result.Score * 25;
+            strenght_progress.Width = (result.Score * password_textbox.Width) / 4;
+
+            if (result.Score <= 1)
+                strenght_progress.Background = Brushes.Red;
+            else if (result.Score == 2)
+                strenght_progress.Background = Brushes.Orange;
+            else if (result.Score == 3)
+                strenght_progress.Background = Brushes.GreenYellow;
+            else
+                strenght_progress.Background = Brushes.Green;
 
             if (!String.IsNullOrEmpty(result.Feedback.Warning))
                 hint_text.Text = "Warning: " + result.Feedback.Warning + "\n";
