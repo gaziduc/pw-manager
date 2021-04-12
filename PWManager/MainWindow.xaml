@@ -19,7 +19,13 @@
         <DataGrid IsReadOnly="True" Grid.Row="1" Name="grid" AutoGenerateColumns="False">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Service Name" Binding="{Binding name}" MinWidth="50" Width="auto"/>
-                <DataGridTextColumn Header="URL" Binding="{Binding url}" MinWidth="50" Width="auto"/>
+                <DataGridHyperlinkColumn Header="URL" Binding="{Binding url}" MinWidth="50" Width="auto">
+                    <DataGridHyperlinkColumn.ElementStyle>
+                        <Style>
+                            <EventSetter Event="Hyperlink.Click" Handler="OnURLClick"/>
+                        </Style>
+                    </DataGridHyperlinkColumn.ElementStyle>
+                </DataGridHyperlinkColumn>
                 <DataGridTextColumn Header="Login" Binding="{Binding login}" MinWidth="50" Width="auto"/>
                 <DataGridTextColumn Header="Password" Binding="{Binding password}" MinWidth="50" Width="*"/>
                 <DataGridTemplateColumn Header="Fav" CanUserResize="False" MinWidth="20">

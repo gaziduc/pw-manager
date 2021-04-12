@@ -23,7 +23,7 @@
         <TextBlock Name="hint_text" Text="" TextWrapping="Wrap" HorizontalAlignment="Left" Margin="451,120,0,0" VerticalAlignment="Top" Height="47" Width="184"/>
         <Button Name="login_button" Content="Login..." HorizontalAlignment="Center" Margin="0,303,0,0" VerticalAlignment="Top" Width="84" Click="login_button_Click"/>
         <Label Content="Or login" HorizontalAlignment="Center" Margin="0,252,0,0" VerticalAlignment="Top" FontSize="20"/>
-        <Border HorizontalAlignment="Left" BorderThickness="1" CornerRadius="2,2,2,2" Height="7" Margin="261,138,0,0" VerticalAlignment="Top" Width="175" BorderBrush="Black" Background="LightGray"/>
-        <Border Name="strenght_progress" HorizontalAlignment="Left" BorderThickness="1" CornerRadius="2,2,2,2" Height="7" Margin="261,138,0,0" VerticalAlignment="Top" Width="0" BorderBrush="Black" Background="Red"/>
+        <Border HorizontalAlignment="Left" CornerRadius="2,2,2,2" Height="7" Margin="261,138,0,0" VerticalAlignment="Top" Width="175" BorderBrush="Black" Background="LightGray"/>
+        <Border Name="strenght_progress" HorizontalAlignment="Left" CornerRadius="2,2,2,2" Height="7" Margin="261,138,0,0" VerticalAlignment="Top" Width="0" BorderBrush="Black" Background="Red"/>
     </Grid>
 </Window>

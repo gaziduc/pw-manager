@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Data;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -76,6 +77,20 @@ namespace PWManager
                 }
                 break;
             }*/
+        }
+
+        private void OnURLClick(object sender, RoutedEventArgs e)
+        {
+            Hyperlink link = (Hyperlink) e.OriginalSource;
+
+            if (link.NavigateUri.IsAbsoluteUri)
+            {
+                var process = new ProcessStartInfo(link.NavigateUri.AbsoluteUri);
+                process.UseShellExecute = true;
+                Process.Start(process);
+            }
+            else
+                MessageBox.Show(link.NavigateUri.ToString() + " is not a valid absolute URL.", "PW Manager error", MessageBoxButton.OK, MessageBoxImage.Error);
         }
     }
 }

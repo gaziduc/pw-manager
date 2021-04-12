@@ -17,6 +17,6 @@
         <Button Name="signup_button" Content="Sign up..." HorizontalAlignment="Center" Margin="0,254,0,0" VerticalAlignment="Top" Width="132" Click="signup_button_Click"/>
         <Label Content="Login" HorizontalAlignment="Center" Margin="0,22,0,0" VerticalAlignment="Top" FontSize="20" FontWeight="Normal"/>
         <Label Content="Or sign up" HorizontalAlignment="Center" Margin="0,212,0,0" VerticalAlignment="Top" FontSize="20" FontWeight="Normal"/>
-        <ComboBox Name="login_combo_box" IsEditable="True" HorizontalAlignment="Left" Margin="211,72,0,0" VerticalAlignment="Top" Width="120" Height="24"/>
+        <ComboBox Name="login_combo_box" IsEditable="True" HorizontalAlignment="Left" Margin="211,74,0,0" VerticalAlignment="Top" Width="120" Height="22"/>
     </Grid>
 </Window>
