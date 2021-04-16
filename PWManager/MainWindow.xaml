@@ -16,7 +16,12 @@
         </Grid.RowDefinitions>
         
         <Button Grid.Row="0" Name="add_password" Width="100" Content="Add a service..." Margin="5,5,5,5" HorizontalAlignment="Left" Click="add_password_Click"/>
-        <DataGrid IsReadOnly="True" Grid.Row="1" Name="grid" AutoGenerateColumns="False">
+        <DataGrid SelectionUnit="Cell" IsReadOnly="True" Grid.Row="1" Name="grid" AutoGenerateColumns="False">
+            <DataGrid.ContextMenu>
+                <ContextMenu>
+                    <MenuItem Command="Copy"/>
+                </ContextMenu>
+            </DataGrid.ContextMenu>
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Service Name" Binding="{Binding name}" MinWidth="50" Width="auto"/>
                 <DataGridHyperlinkColumn Header="URL" Binding="{Binding url}" MinWidth="50" Width="auto">
