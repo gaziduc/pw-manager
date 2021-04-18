@@ -30,7 +30,7 @@ namespace PWManager
 
         private async void add_button_Click(object sender, RoutedEventArgs e)
         {
-            await _service.CreateServiceAsync(service_name.Text, url.Text, login.Text, password.Text, user_id, 1);
+            await _service.CreateServiceAsync(service_name.Text, url.Text, login.Text, password.Text, user_id, CategoryComboBox.Text);
 
             Close();
         }

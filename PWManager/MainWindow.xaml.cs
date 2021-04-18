@@ -60,7 +60,7 @@ namespace PWManager
 
         private async void favorite_button_Click(object sender, RoutedEventArgs e)
         {
-            PWManagerWCF.Models.service_credentials serv = (PWManagerWCF.Models.service_credentials)((Button)e.Source).DataContext;
+            MainService.service_credentials serv = (MainService.service_credentials)((Button)e.Source).DataContext;
             await _service.ChangeFavoriteStatusAsync(serv.id, serv.is_favorite);
             LoadItems();
             /*var dc = (sender as Button);

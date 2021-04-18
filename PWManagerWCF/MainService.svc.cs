@@ -71,10 +71,23 @@ namespace PWManagerWCF
             }
         }
 
-        public (bool, string) CreateService(string name, string url, string login, string password, long user_id, short category_id)
+        public (bool, string) CreateService(string name, string url, string login, string password, long user_id, string category)
         {
             try
             {
+                var category_row = ents.Categories.FirstOrDefault(x => x.name.Equals(category));
+                short category_id = 6;
+                if (category_row == null)
+                {
+                    var tmp = ents.Categories.FirstOrDefault(x => x.name.Equals("Other"));
+                    if (tmp != null)
+                    {
+                        category_id = tmp.id;
+                    }
+                } else
+                {
+                    category_id = category_row.id;
+                }
                 ents.ServiceCredentials.Add(new service_credentials
                 {
                     name = name,

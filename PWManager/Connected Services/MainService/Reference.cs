@@ -9,7 +9,135 @@
 
 namespace MainService
 {
+    using System.Runtime.Serialization;
     
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.2")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="service_credentials", Namespace="http://schemas.datacontract.org/2004/07/PWManagerWCF.Models")]
+    public partial class service_credentials : object
+    {
+        
+        private short category_idField;
+        
+        private long idField;
+        
+        private bool is_favoriteField;
+        
+        private string loginField;
+        
+        private string nameField;
+        
+        private string passwordField;
+        
+        private string urlField;
+        
+        private long user_idField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public short category_id
+        {
+            get
+            {
+                return this.category_idField;
+            }
+            set
+            {
+                this.category_idField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public long id
+        {
+            get
+            {
+                return this.idField;
+            }
+            set
+            {
+                this.idField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool is_favorite
+        {
+            get
+            {
+                return this.is_favoriteField;
+            }
+            set
+            {
+                this.is_favoriteField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string login
+        {
+            get
+            {
+                return this.loginField;
+            }
+            set
+            {
+                this.loginField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string name
+        {
+            get
+            {
+                return this.nameField;
+            }
+            set
+            {
+                this.nameField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string password
+        {
+            get
+            {
+                return this.passwordField;
+            }
+            set
+            {
+                this.passwordField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string url
+        {
+            get
+            {
+                return this.urlField;
+            }
+            set
+            {
+                this.urlField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public long user_id
+        {
+            get
+            {
+                return this.user_idField;
+            }
+            set
+            {
+                this.user_idField = value;
+            }
+        }
+    }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.2")]
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="MainService.IMainService")]
@@ -17,7 +145,7 @@ namespace MainService
     {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMainService/GetAllServiceCredentials", ReplyAction="http://tempuri.org/IMainService/GetAllServiceCredentialsResponse")]
-        System.Threading.Tasks.Task<System.Collections.Generic.List<PWManagerWCF.Models.service_credentials>> GetAllServiceCredentialsAsync(long user_id);
+        System.Threading.Tasks.Task<System.Collections.Generic.List<MainService.service_credentials>> GetAllServiceCredentialsAsync(long user_id);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMainService/LoginExists", ReplyAction="http://tempuri.org/IMainService/LoginExistsResponse")]
         System.Threading.Tasks.Task<bool> LoginExistsAsync(string login);
@@ -32,7 +160,7 @@ namespace MainService
         System.Threading.Tasks.Task<System.ValueTuple<long, string>> CreateUserAsync(string login, string password);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMainService/CreateService", ReplyAction="http://tempuri.org/IMainService/CreateServiceResponse")]
-        System.Threading.Tasks.Task<System.ValueTuple<bool, string>> CreateServiceAsync(string name, string url, string login, string password, long user_id, short category_id);
+        System.Threading.Tasks.Task<System.ValueTuple<bool, string>> CreateServiceAsync(string name, string url, string login, string password, long user_id, string category);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMainService/ChangeFavoriteStatus", ReplyAction="http://tempuri.org/IMainService/ChangeFavoriteStatusResponse")]
         System.Threading.Tasks.Task<System.ValueTuple<bool, string>> ChangeFavoriteStatusAsync(long service_id, bool is_favorite);
@@ -88,7 +216,7 @@ namespace MainService
         {
         }
         
-        public System.Threading.Tasks.Task<System.Collections.Generic.List<PWManagerWCF.Models.service_credentials>> GetAllServiceCredentialsAsync(long user_id)
+        public System.Threading.Tasks.Task<System.Collections.Generic.List<MainService.service_credentials>> GetAllServiceCredentialsAsync(long user_id)
         {
             return base.Channel.GetAllServiceCredentialsAsync(user_id);
         }
@@ -113,9 +241,9 @@ namespace MainService
             return base.Channel.CreateUserAsync(login, password);
         }
         
-        public System.Threading.Tasks.Task<System.ValueTuple<bool, string>> CreateServiceAsync(string name, string url, string login, string password, long user_id, short category_id)
+        public System.Threading.Tasks.Task<System.ValueTuple<bool, string>> CreateServiceAsync(string name, string url, string login, string password, long user_id, string category)
         {
-            return base.Channel.CreateServiceAsync(name, url, login, password, user_id, category_id);
+            return base.Channel.CreateServiceAsync(name, url, login, password, user_id, category);
         }
         
         public System.Threading.Tasks.Task<System.ValueTuple<bool, string>> ChangeFavoriteStatusAsync(long service_id, bool is_favorite)
