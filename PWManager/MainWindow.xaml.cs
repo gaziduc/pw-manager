@@ -42,9 +42,13 @@ namespace PWManager
         }
 
 
-        private async void LoadItems()
+        private async void LoadItems(string search = "")
         {
             var tmp = await _service.GetAllServiceCredentialsAsync(user_id);
+            if (search.Length != 0)
+            {
+                tmp = tmp.Where(x => x.name.Contains(search)).ToList();
+            }
             // créer ici cast sur un modelview (pour binding category et propreté)
             var sorted_list = tmp.OrderBy(e => e.is_favorite ? 0 : 1).ToList();
             grid.ItemsSource = sorted_list;
@@ -93,6 +97,11 @@ namespace PWManager
             }
             else
                 MessageBox.Show(link.NavigateUri.ToString() + " is not a valid absolute URL.", "PW Manager error", MessageBoxButton.OK, MessageBoxImage.Error);
+        }
+
+        private void SearchButton_Click(object sender, RoutedEventArgs e)
+        {
+            LoadItems(SearchText.Text);
         }
     }
 }

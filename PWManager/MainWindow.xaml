@@ -12,11 +12,17 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="30" />
+            <RowDefinition Height="40" />
             <RowDefinition MinHeight="60" Height="*"/>
         </Grid.RowDefinitions>
-        
+
         <Button Grid.Row="0" Name="add_password" Width="100" Content="Add a service..." Margin="5,5,5,5" HorizontalAlignment="Left" Click="add_password_Click"/>
-        <DataGrid SelectionUnit="Cell" IsReadOnly="True" Grid.Row="1" Name="grid" AutoGenerateColumns="False">
+
+        <Label Content="Service Name" HorizontalAlignment="Left" Margin="5,0,0,0" Grid.Row="1" VerticalAlignment="Center"/>
+        <TextBox Name="SearchText" HorizontalAlignment="Left" Margin="98,0,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Center" Width="120"/>
+        <Button Name="SearchButton" Content="Search" HorizontalAlignment="Left" Margin="241,10,0,10" Grid.Row="1" Click="SearchButton_Click"/>
+
+        <DataGrid SelectionUnit="Cell" IsReadOnly="True" Grid.Row="2" Name="grid" AutoGenerateColumns="False">
             <DataGrid.ContextMenu>
                 <ContextMenu>
                     <MenuItem Command="Copy"/>
