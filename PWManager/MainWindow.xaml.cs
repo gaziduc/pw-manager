@@ -45,7 +45,9 @@ namespace PWManager
         private async void LoadItems()
         {
             var tmp = await _service.GetAllServiceCredentialsAsync(user_id);
-            grid.ItemsSource = tmp;
+            // créer ici cast sur un modelview (pour binding category et propreté)
+            var sorted_list = tmp.OrderBy(e => e.is_favorite ? 0 : 1).ToList();
+            grid.ItemsSource = sorted_list;
         }
 
         private void add_password_Click(object sender, RoutedEventArgs e)
