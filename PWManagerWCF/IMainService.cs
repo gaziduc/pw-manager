@@ -33,5 +33,11 @@ namespace PWManagerWCF
         [OperationContract]
         (bool, string) ChangeFavoriteStatus(long service_id, bool is_favorite);
 
+        [OperationContract]
+        string GetCategoryFromId(short id);
+
+        [OperationContract]
+        bool UpdateService(long id, string name, string url, string login, string password, string category);
+
     }
 }

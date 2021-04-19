@@ -25,7 +25,7 @@ namespace PWManagerWCF
             this.ents = ents;
         }
 
- 
+
         public List<service_credentials> GetAllServiceCredentials(long user_id)
         {
             return ents.ServiceCredentials.Where(x => x.user_id == user_id).ToList();
@@ -75,19 +75,7 @@ namespace PWManagerWCF
         {
             try
             {
-                var category_row = ents.Categories.FirstOrDefault(x => x.name.Equals(category));
-                short category_id = 6;
-                if (category_row == null)
-                {
-                    var tmp = ents.Categories.FirstOrDefault(x => x.name.Equals("Other"));
-                    if (tmp != null)
-                    {
-                        category_id = tmp.id;
-                    }
-                } else
-                {
-                    category_id = category_row.id;
-                }
+
                 ents.ServiceCredentials.Add(new service_credentials
                 {
                     name = name,
@@ -95,8 +83,8 @@ namespace PWManagerWCF
                     login = login,
                     password = password,
                     user_id = user_id,
-                    category_id = category_id,
-                    is_favorite = false 
+                    category_id = GetIdFromCategoryString(category),
+                    is_favorite = false
                 });
                 ents.SaveChanges();
                 return (true, null);
@@ -119,6 +107,67 @@ namespace PWManagerWCF
                 return (false, e.Message);
             }
         }
+
+        public string GetCategoryFromId(short id)
+        {
+            try
+            {
+                var category = ents.Categories.FirstOrDefault(c => c.id == id);
+                if (category == null)
+                    return "";
+
+                return category.name;
+            }
+            catch (Exception e)
+            {
+                return e.Message;
+            }
+        }
+
+        public short GetIdFromCategoryString(string category)
+        {
+            var category_row = ents.Categories.FirstOrDefault(x => x.name.Equals(category));
+            short category_id = 6;
+            if (category_row == null)
+            {
+                var tmp = ents.Categories.FirstOrDefault(x => x.name.Equals("Other"));
+                if (tmp != null)
+                {
+                    category_id = tmp.id;
+                }
+            }
+            else
+            {
+                category_id = category_row.id;
+            }
+
+            return category_id;
+        }
+
+        public bool UpdateService(long id, string name, string url, string login, string password, string category)
+        {
+            try
+            {
+                var serv = ents.ServiceCredentials.FirstOrDefault(e => e.id == id);
+
+                if (serv == null)
+                    return false;
+
+                serv.name = name;
+                serv.url = url;
+                serv.login = login;
+                serv.password = password;
+                serv.category_id = GetIdFromCategoryString(category);
+
+                ents.SaveChanges();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
     }
 
 }

@@ -12,15 +12,15 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="30" />
-            <RowDefinition Height="40" />
+            <RowDefinition Height="35" />
             <RowDefinition MinHeight="60" Height="*"/>
         </Grid.RowDefinitions>
 
         <Button Grid.Row="0" Name="add_password" Width="100" Content="Add a service..." Margin="5,5,5,5" HorizontalAlignment="Left" Click="add_password_Click"/>
 
-        <Label Content="Service Name" HorizontalAlignment="Left" Margin="5,0,0,0" Grid.Row="1" VerticalAlignment="Center"/>
-        <TextBox Name="SearchText" HorizontalAlignment="Left" Margin="98,0,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Center" Width="120"/>
-        <Button Name="SearchButton" Content="Search" HorizontalAlignment="Left" Margin="241,10,0,10" Grid.Row="1" Click="SearchButton_Click"/>
+        <Label Content="Search for service name:" HorizontalAlignment="Left" Margin="5,0,0,0" Grid.Row="1" VerticalAlignment="Center"/>
+        <TextBox Name="SearchText" HorizontalAlignment="Left" Margin="148,0,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Center" Width="144"/>
+        <Button Name="SearchButton" Content="Search" HorizontalAlignment="Left" Margin="302,6,0,6" Grid.Row="1" Click="SearchButton_Click" Width="63"/>
 
         <DataGrid SelectionUnit="Cell" IsReadOnly="True" Grid.Row="2" Name="grid" AutoGenerateColumns="False">
             <DataGrid.ContextMenu>
@@ -50,6 +50,13 @@
                                     <Setter TargetName="favoriteImg" Property="Source" Value="/Images/favorite_full.png"/>
                                 </DataTrigger>
                             </DataTemplate.Triggers>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Header="Modify" CanUserResize="False" MinWidth="50">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Name="modify_button" Content="Modify" Width="50" Height="20" ToolTip="Modify service information" Click="modify_button_Click"/>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>

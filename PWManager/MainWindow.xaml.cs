@@ -66,7 +66,7 @@ namespace PWManager
 
         private async void favorite_button_Click(object sender, RoutedEventArgs e)
         {
-            MainService.service_credentials serv = (MainService.service_credentials)((Button)e.Source).DataContext;
+            PWManagerWCF.Models.service_credentials serv = (PWManagerWCF.Models.service_credentials)((Button)e.Source).DataContext;
             await _service.ChangeFavoriteStatusAsync(serv.id, serv.is_favorite);
             LoadItems();
             /*var dc = (sender as Button);
@@ -102,6 +102,17 @@ namespace PWManager
         private void SearchButton_Click(object sender, RoutedEventArgs e)
         {
             LoadItems(SearchText.Text);
+        }
+
+        private void modify_button_Click(object sender, RoutedEventArgs e)
+        {
+            PWManagerWCF.Models.service_credentials serv = (PWManagerWCF.Models.service_credentials)((Button)e.Source).DataContext;
+
+            ModifyServiceWindow modify = new ModifyServiceWindow(_service, serv);
+            modify.Owner = Window.GetWindow(this);
+            modify.ShowDialog();
+
+            LoadItems();
         }
     }
 }
