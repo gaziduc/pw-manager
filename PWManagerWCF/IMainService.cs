@@ -39,5 +39,8 @@ namespace PWManagerWCF
         [OperationContract]
         bool UpdateService(long id, string name, string url, string login, string password, string category);
 
+        [OperationContract]
+        bool DeleteService(long id);
+
     }
 }

@@ -114,5 +114,21 @@ namespace PWManager
 
             LoadItems();
         }
+
+        private async void delete_button_Click(object sender, RoutedEventArgs e)
+        {
+            PWManagerWCF.Models.service_credentials serv = (PWManagerWCF.Models.service_credentials)((Button)e.Source).DataContext;
+            MessageBoxResult result = MessageBox.Show("Are you sure you want to delete the following service: \n" + serv.name,
+                "Delete Box", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+            switch (result)
+            {
+                case MessageBoxResult.Yes:
+                    await _service.DeleteServiceAsync(serv.id);
+                    LoadItems();
+                    break;
+                case MessageBoxResult.No:
+                    break;
+            }
+        }
     }
 }

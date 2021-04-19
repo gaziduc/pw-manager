@@ -13,8 +13,8 @@
       "*, MainService"
     ],
     "references": [
-      "C:\\Users\\Gazi\\Documents\\GitHub\\pw-manager\\PWManager\\bin\\Debug\\netcoreapp3.1\\EntityFramework.dll",
-      "C:\\Users\\Gazi\\Documents\\GitHub\\pw-manager\\PWManager\\bin\\Debug\\netcoreapp3.1\\PWManagerWCF.dll",
+      "C:\\Users\\PC\\Desktop\\pw-manager\\PWManager\\bin\\Debug\\netcoreapp3.1\\EntityFramework.dll",
+      "C:\\Users\\PC\\Desktop\\pw-manager\\PWManager\\bin\\Debug\\netcoreapp3.1\\PWManagerWCF.dll",
       "Microsoft.Data.SqlClient, {Microsoft.Data.SqlClient, 2.0.1}",
       "Microsoft.EntityFrameworkCore, {Microsoft.EntityFrameworkCore, 5.0.5}",
       "Microsoft.EntityFrameworkCore.Abstractions, {Microsoft.EntityFrameworkCore.Abstractions, 5.0.5}",

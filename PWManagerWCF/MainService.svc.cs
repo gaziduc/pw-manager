@@ -168,6 +168,27 @@ namespace PWManagerWCF
             }
         }
 
+        public bool DeleteService(long id)
+        {
+            try
+            {
+                var serv = ents.ServiceCredentials.FirstOrDefault(e => e.id == id);
+
+                if (serv == null)
+                {
+                    return false;
+                }
+
+                ents.ServiceCredentials.Remove(serv);
+                ents.SaveChanges();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
     }
 
 }

@@ -42,6 +42,9 @@ namespace MainService
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMainService/UpdateService", ReplyAction="http://tempuri.org/IMainService/UpdateServiceResponse")]
         System.Threading.Tasks.Task<bool> UpdateServiceAsync(long id, string name, string url, string login, string password, string category);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMainService/DeleteService", ReplyAction="http://tempuri.org/IMainService/DeleteServiceResponse")]
+        System.Threading.Tasks.Task<bool> DeleteServiceAsync(long id);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.2")]
@@ -137,6 +140,11 @@ namespace MainService
         public System.Threading.Tasks.Task<bool> UpdateServiceAsync(long id, string name, string url, string login, string password, string category)
         {
             return base.Channel.UpdateServiceAsync(id, name, url, login, password, category);
+        }
+        
+        public System.Threading.Tasks.Task<bool> DeleteServiceAsync(long id)
+        {
+            return base.Channel.DeleteServiceAsync(id);
         }
         
         public virtual System.Threading.Tasks.Task OpenAsync()
