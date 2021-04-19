@@ -40,6 +40,7 @@ namespace PWManager
             if (String.IsNullOrEmpty(password_textbox.Password))
             {
                 strenght_progress.Width = 0;
+                hint_text.Text = "";
                 return;
             }
 
@@ -54,6 +55,11 @@ namespace PWManager
                 strenght_progress.Background = Brushes.GreenYellow;
             else
                 strenght_progress.Background = Brushes.Green;
+
+            if (!String.IsNullOrEmpty(result.Feedback.Warning))
+                hint_text.Text = "Warning: " + result.Feedback.Warning + "\n";
+            else
+                hint_text.Text = "";
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)

@@ -44,13 +44,10 @@ namespace PWManager
 
         private async void LoadItems(string search = "")
         {
-            var tmp = await _service.GetAllServiceCredentialsAsync(user_id);
-            if (search.Length != 0)
-            {
-                tmp = tmp.Where(x => x.name.Contains(search)).ToList();
-            }
-            // créer ici cast sur un modelview (pour binding category et propreté)
-            var sorted_list = tmp.OrderBy(e => e.is_favorite ? 0 : 1).ToList();
+            var list = await _service.GetAllServiceCredentialsAsync(user_id);
+
+            var sorted_list = list.Where(x => x.name.Contains(search)).OrderBy(e => e.is_favorite ? 0 : 1).ToList();
+
             grid.ItemsSource = sorted_list;
         }
 
@@ -69,25 +66,11 @@ namespace PWManager
             PWManagerWCF.Models.service_credentials serv = (PWManagerWCF.Models.service_credentials)((Button)e.Source).DataContext;
             await _service.ChangeFavoriteStatusAsync(serv.id, serv.is_favorite);
             LoadItems();
-            /*var dc = (sender as Button);
-            var children = LogicalTreeHelper.GetChildren(dc);
-            foreach (var child in children)
-            {
-                var srcImg = ((Image)child);
-                if (serv.is_favorite)
-                {
-                    srcImg.Source = this.img_favorite_empty;
-                } else
-                {
-                    srcImg.Source = this.img_favorite_full;
-                }
-                break;
-            }*/
         }
 
         private void OnURLClick(object sender, RoutedEventArgs e)
         {
-            Hyperlink link = (Hyperlink) e.OriginalSource;
+            Hyperlink link = (Hyperlink)e.OriginalSource;
 
             if (link.NavigateUri.IsAbsoluteUri)
             {
@@ -117,18 +100,19 @@ namespace PWManager
 
         private async void delete_button_Click(object sender, RoutedEventArgs e)
         {
-            PWManagerWCF.Models.service_credentials serv = (PWManagerWCF.Models.service_credentials)((Button)e.Source).DataContext;
-            MessageBoxResult result = MessageBox.Show("Are you sure you want to delete the following service: \n" + serv.name,
-                "Delete Box", MessageBoxButton.YesNo, MessageBoxImage.Warning);
-            switch (result)
+            PWManagerWCF.Models.service_credentials serv = (PWManagerWCF.Models.service_credentials) ((Button) e.Source).DataContext;
+
+            MessageBoxResult result = MessageBox.Show("Are you sure you want to delete the following service:\n" + serv.name, "Delete service?", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+            if (result == MessageBoxResult.Yes)
             {
-                case MessageBoxResult.Yes:
-                    await _service.DeleteServiceAsync(serv.id);
-                    LoadItems();
-                    break;
-                case MessageBoxResult.No:
-                    break;
+                await _service.DeleteServiceAsync(serv.id);
+                LoadItems();
             }
+        }
+
+        private void SearchText_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            LoadItems(SearchText.Text);
         }
     }
 }

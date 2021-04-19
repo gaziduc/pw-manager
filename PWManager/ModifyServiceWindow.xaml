@@ -24,7 +24,7 @@
         <Border HorizontalAlignment="Left" CornerRadius="2,2,2,2" Height="8" Margin="90,171,0,0" VerticalAlignment="Top" Width="175" BorderBrush="Black" Background="LightGray"/>
         <Border Name="strenght_progress" HorizontalAlignment="Left" CornerRadius="2,2,2,2" Height="7" Margin="90,171,0,0" VerticalAlignment="Top" Width="0" BorderBrush="Black" Background="Red"/>
 
-        <ComboBox Name="CategoryComboBox" HorizontalAlignment="Right" Margin="0,0,5,0" VerticalAlignment="Center" Width="120">
+        <ComboBox Name="CategoryComboBox" HorizontalAlignment="Right" Margin="0,104,5,0" VerticalAlignment="Top" Width="140">
             <ComboBoxItem Content="Social Network"></ComboBoxItem>
             <ComboBoxItem Content="Bank"></ComboBoxItem>
             <ComboBoxItem Content="Messaging Service"></ComboBoxItem>
@@ -32,8 +32,9 @@
             <ComboBoxItem Content="Entertainment"></ComboBoxItem>
             <ComboBoxItem Content="Other"></ComboBoxItem>
         </ComboBox>
-        <Label Content="Category" HorizontalAlignment="Left" Margin="305,0,0,0" VerticalAlignment="Center"/>
+        <Label Content="Category" HorizontalAlignment="Left" Margin="292,101,0,0" VerticalAlignment="Top"/>
 
         <Button Name="modify_button" Content="Apply" HorizontalAlignment="Center" Margin="5,5,5,15" VerticalAlignment="Bottom" Width="80" Click="modify_button_Click" />
+        <TextBlock Name="hint_text" Text="" TextWrapping="Wrap" HorizontalAlignment="Left" Margin="292,139,0,0" VerticalAlignment="Top" Height="47" Width="203"/>
     </Grid>
 </Window>
