@@ -55,5 +55,12 @@ namespace PWManager
             else
                 strenght_progress.Background = Brushes.Green;
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            var pwd = new PasswordGenerator.Password(includeLowercase: true, includeUppercase: true, includeNumeric: true, includeSpecial: true, passwordLength: 21);
+            var password = pwd.Next();
+            password_textbox.Password = password;
+        }
     }
 }
