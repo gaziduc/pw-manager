@@ -30,9 +30,30 @@ namespace PWManager
 
         private async void add_button_Click(object sender, RoutedEventArgs e)
         {
-            await _service.CreateServiceAsync(service_name.Text, url.Text, login.Text, password.Text, user_id, CategoryComboBox.Text);
+            await _service.CreateServiceAsync(service_name.Text, url.Text, login.Text, password_textbox.Password, user_id, CategoryComboBox.Text);
 
             Close();
+        }
+
+        private void password_PasswordChanged(object sender, RoutedEventArgs e)
+        {
+            if (String.IsNullOrEmpty(password_textbox.Password))
+            {
+                strenght_progress.Width = 0;
+                return;
+            }
+
+            var result = Zxcvbn.Core.EvaluatePassword(password_textbox.Password);
+            strenght_progress.Width = (result.Score * password_textbox.Width) / 4;
+
+            if (result.Score <= 1)
+                strenght_progress.Background = Brushes.Red;
+            else if (result.Score == 2)
+                strenght_progress.Background = Brushes.Orange;
+            else if (result.Score == 3)
+                strenght_progress.Background = Brushes.GreenYellow;
+            else
+                strenght_progress.Background = Brushes.Green;
         }
     }
 }

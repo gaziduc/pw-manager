@@ -29,7 +29,7 @@ namespace PWManager
             service_name.Text = serv.name;
             url.Text = serv.url;
             login.Text = serv.login;
-            password.Text = serv.password;
+            password_textbox.Password = serv.password;
 
             GetCategoryName(serv.category_id);
 
@@ -45,8 +45,29 @@ namespace PWManager
 
         private async void modify_button_Click(object sender, RoutedEventArgs e)
         {
-            await _service.UpdateServiceAsync(_serv.id, service_name.Text, url.Text, login.Text, password.Text, CategoryComboBox.Text);
+            await _service.UpdateServiceAsync(_serv.id, service_name.Text, url.Text, login.Text, password_textbox.Password, CategoryComboBox.Text);
             Close();
+        }
+
+        private void password_textbox_PasswordChanged(object sender, RoutedEventArgs e)
+       {
+            if (String.IsNullOrEmpty(password_textbox.Password))
+            {
+                strenght_progress.Width = 0;
+                return;
+            }
+
+            var result = Zxcvbn.Core.EvaluatePassword(password_textbox.Password);
+            strenght_progress.Width = (result.Score * password_textbox.Width) / 4;
+
+            if (result.Score <= 1)
+                strenght_progress.Background = Brushes.Red;
+            else if (result.Score == 2)
+                strenght_progress.Background = Brushes.Orange;
+            else if (result.Score == 3)
+                strenght_progress.Background = Brushes.GreenYellow;
+            else
+                strenght_progress.Background = Brushes.Green;
         }
     }
 }

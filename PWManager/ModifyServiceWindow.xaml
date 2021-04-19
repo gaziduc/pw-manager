@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PWManager"
         mc:Ignorable="d"
-        Title="Modify Service" Height="250" Width="500"
+        Title="Modify Service" Height="275" Width="500"
         WindowStartupLocation="CenterOwner"
         ResizeMode="CanMinimize"
         Background="#FFD7ECFF">
@@ -16,12 +16,15 @@
         <Label Content="Service name" HorizontalAlignment="Left" Margin="6,37,0,0" VerticalAlignment="Top"/>
         <TextBox Name="url" Margin="90,75,5,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="auto"/>
         <Label Content="URL" HorizontalAlignment="Left" Margin="54,70,0,0" VerticalAlignment="Top"/>
-        <TextBox Name="login" Margin="90,106,268,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="auto"/>
+        <TextBox Name="login" Margin="90,106,235,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="auto"/>
         <Label Content="Login" HorizontalAlignment="Left" Margin="45,101,0,0" VerticalAlignment="Top"/>
-        <TextBox Name="password" Margin="90,139,268,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="auto"/>
+        <PasswordBox Name="password_textbox" Margin="90,139,235,0" VerticalAlignment="Top" Width="175" PasswordChanged="password_textbox_PasswordChanged"/>
         <Label Content="Password" HorizontalAlignment="Left" Margin="25,135,0,0" VerticalAlignment="Top"/>
+        <Label Content="Strenght" HorizontalAlignment="Left" Margin="27,161,0,0" VerticalAlignment="Top"/>
+        <Border HorizontalAlignment="Left" CornerRadius="2,2,2,2" Height="8" Margin="90,171,0,0" VerticalAlignment="Top" Width="175" BorderBrush="Black" Background="LightGray"/>
+        <Border Name="strenght_progress" HorizontalAlignment="Left" CornerRadius="2,2,2,2" Height="7" Margin="90,171,0,0" VerticalAlignment="Top" Width="0" BorderBrush="Black" Background="Red"/>
 
-        <ComboBox Name="CategoryComboBox" HorizontalAlignment="Left" Margin="370,0,0,0" VerticalAlignment="Center" Width="120">
+        <ComboBox Name="CategoryComboBox" HorizontalAlignment="Right" Margin="0,0,5,0" VerticalAlignment="Center" Width="120">
             <ComboBoxItem Content="Social Network"></ComboBoxItem>
             <ComboBoxItem Content="Bank"></ComboBoxItem>
             <ComboBoxItem Content="Messaging Service"></ComboBoxItem>
