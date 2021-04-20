@@ -44,7 +44,7 @@ namespace PWManager
         {
             var list = await _service.GetAllServiceCredentialsAsync(user_id);
 
-            var sorted_list = list.Where(x => x.name.Contains(search)).OrderBy(e => e.is_favorite ? 0 : 1).ToList();
+            var sorted_list = list.Where(x => x.name.ToLower().Contains(search.ToLower())).OrderBy(e => e.is_favorite ? 0 : 1).ToList();
 
             List<Models.DataGridView> data = new List<Models.DataGridView>();
 
@@ -60,7 +60,7 @@ namespace PWManager
                 if (id != -1 && elm.id == id)
                     model.hidden_password = elm.password;
                 else
-                    model.hidden_password = new String('*', model.password.Length);
+                    model.hidden_password = new String('\u2022', model.password.Length);
 
                 model.is_favorite = elm.is_favorite;
                 model.user_id = elm.user_id;

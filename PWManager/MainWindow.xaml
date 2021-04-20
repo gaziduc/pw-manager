@@ -11,15 +11,14 @@
         Background="#FFD7ECFF">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="30" />
-            <RowDefinition Height="35" />
+            <RowDefinition Height="40" />
             <RowDefinition MinHeight="60" Height="*"/>
         </Grid.RowDefinitions>
 
-        <Button Grid.Row="0" Name="add_password" Width="100" Content="Add a service..." Margin="10,10,0,0" HorizontalAlignment="Left" Click="add_password_Click"/>
+        <Button Grid.Row="0" Name="add_password" Width="100" Content="Add a service..." Margin="10,10,0,10" HorizontalAlignment="Left" Click="add_password_Click"/>
 
-        <Label Content="Search for service name:" HorizontalAlignment="Left" Margin="5,0,0,0" Grid.Row="1" VerticalAlignment="Center"/>
-        <TextBox Name="SearchText" HorizontalAlignment="Left" Margin="148,0,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Center" Width="155" Height="20" TextChanged="SearchText_TextChanged"/>
+        <Label Content="Search for service name:" HorizontalAlignment="Right" Margin="0,0,165,0" VerticalAlignment="Center"/>
+        <TextBox Name="SearchText" HorizontalAlignment="Right" Margin="0,0,5,0" TextWrapping="Wrap" VerticalAlignment="Center" Width="155" Height="20" TextChanged="SearchText_TextChanged"/>
 
         <DataGrid SelectionUnit="Cell" IsReadOnly="True" Grid.Row="2" Name="grid" AutoGenerateColumns="False">
             <DataGrid.ContextMenu>
@@ -29,21 +28,15 @@
             </DataGrid.ContextMenu>
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Service Name" Binding="{Binding name}" MinWidth="50" Width="auto"/>
-                <DataGridHyperlinkColumn Header="URL" Binding="{Binding url}" MinWidth="50" Width="auto">
+                <DataGridHyperlinkColumn Header="URL" Binding="{Binding url}" MinWidth="100" Width="auto">
                     <DataGridHyperlinkColumn.ElementStyle>
                         <Style>
                             <EventSetter Event="Hyperlink.Click" Handler="OnURLClick"/>
                         </Style>
                     </DataGridHyperlinkColumn.ElementStyle>
                 </DataGridHyperlinkColumn>
-                <DataGridTextColumn Header="Login" Binding="{Binding login}" MinWidth="50" Width="auto"/>
-                <DataGridTextColumn Header="Password" Binding="{Binding hidden_password}" MinWidth="50" Width="*">
-                    <DataGridTextColumn.CellStyle>
-                        <Style TargetType="DataGridCell">
-                            <Setter Property="ToolTip" Value="{Binding password}" />
-                        </Style>
-                    </DataGridTextColumn.CellStyle>
-                </DataGridTextColumn>
+                <DataGridTextColumn Header="Login" Binding="{Binding login}" MinWidth="100" Width="auto"/>
+                <DataGridTextColumn Header="Password" Binding="{Binding hidden_password}" MinWidth="50" Width="*" />
                 <DataGridTemplateColumn Header="Show" CanUserResize="False" MinWidth="40">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
@@ -67,10 +60,10 @@
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
-                <DataGridTemplateColumn Header="Modify" CanUserResize="False" MinWidth="50">
+                <DataGridTemplateColumn Header="Edit" CanUserResize="False" MinWidth="40">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Button Name="modify_button" Content="Modify" Width="50" Height="20" ToolTip="Modify service information" Click="modify_button_Click"/>
+                            <Button Name="modify_button" Content="Edit" Width="40" Height="20" ToolTip="Modify service information" Click="modify_button_Click"/>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>

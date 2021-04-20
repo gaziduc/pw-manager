@@ -49,7 +49,7 @@ namespace PWManager
             Close();
         }
 
-        private void password_textbox_PasswordChanged(object sender, RoutedEventArgs e)
+        private void password_PasswordChanged(object sender, RoutedEventArgs e)
         {
             if (String.IsNullOrEmpty(password_textbox.Password))
             {
@@ -74,6 +74,13 @@ namespace PWManager
                 hint_text.Text = "Warning: " + result.Feedback.Warning + "\n";
             else
                 hint_text.Text = "";
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            var pwd = new PasswordGenerator.Password(includeLowercase: true, includeUppercase: true, includeNumeric: true, includeSpecial: true, passwordLength: 21);
+            var password = pwd.Next();
+            password_textbox.Password = password;
         }
     }
 }

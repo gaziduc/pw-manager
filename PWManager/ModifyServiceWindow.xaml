@@ -5,26 +5,27 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PWManager"
         mc:Ignorable="d"
-        Title="Modify Service" Height="275" Width="500"
+        Title="Modify Service" Height="340" Width="500"
         WindowStartupLocation="CenterOwner"
         ResizeMode="CanMinimize"
         Background="#FFD7ECFF">
     <Grid>
-        <Label Content="Modify service" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="18"/>
+        <Label Content="Edit service" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="18"/>
 
-        <TextBox Name="service_name" Margin="90,43,5,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="auto"/>
+        <TextBox Name="service_name" Margin="90,43,10,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="auto"/>
         <Label Content="Service name" HorizontalAlignment="Left" Margin="6,37,0,0" VerticalAlignment="Top"/>
-        <TextBox Name="url" Margin="90,75,5,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="auto"/>
+        <TextBox Name="url" Margin="90,75,10,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="auto"/>
         <Label Content="URL" HorizontalAlignment="Left" Margin="54,70,0,0" VerticalAlignment="Top"/>
-        <TextBox Name="login" Margin="90,106,235,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="auto"/>
+        <TextBox Name="login" Margin="90,106,10,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="auto"/>
         <Label Content="Login" HorizontalAlignment="Left" Margin="45,101,0,0" VerticalAlignment="Top"/>
-        <PasswordBox Name="password_textbox" Margin="90,139,235,0" VerticalAlignment="Top" Width="175" PasswordChanged="password_textbox_PasswordChanged"/>
         <Label Content="Password" HorizontalAlignment="Left" Margin="25,135,0,0" VerticalAlignment="Top"/>
+        <PasswordBox Name="password_textbox" HorizontalAlignment="Left" Margin="90,139,0,0" VerticalAlignment="Top" PasswordChanged="password_PasswordChanged" Width="200"/>
+        <Button Content="Generate random password" HorizontalAlignment="Left" Margin="302,136,0,0" VerticalAlignment="Top" Height="23" Width="170" Click="Button_Click"/>
         <Label Content="Strenght" HorizontalAlignment="Left" Margin="27,161,0,0" VerticalAlignment="Top"/>
-        <Border HorizontalAlignment="Left" CornerRadius="2,2,2,2" Height="8" Margin="90,171,0,0" VerticalAlignment="Top" Width="175" BorderBrush="Black" Background="LightGray"/>
+        <Border HorizontalAlignment="Left" CornerRadius="2,2,2,2" Height="7" Margin="90,171,0,0" VerticalAlignment="Top" Width="200" BorderBrush="Black" Background="LightGray"/>
         <Border Name="strenght_progress" HorizontalAlignment="Left" CornerRadius="2,2,2,2" Height="7" Margin="90,171,0,0" VerticalAlignment="Top" Width="0" BorderBrush="Black" Background="Red"/>
 
-        <ComboBox Name="CategoryComboBox" HorizontalAlignment="Right" Margin="0,104,5,0" VerticalAlignment="Top" Width="140">
+        <ComboBox Name="CategoryComboBox" HorizontalAlignment="Left" Margin="90,199,0,0" VerticalAlignment="Top" Width="121">
             <ComboBoxItem Content="Social Network"></ComboBoxItem>
             <ComboBoxItem Content="Bank"></ComboBoxItem>
             <ComboBoxItem Content="Messaging Service"></ComboBoxItem>
@@ -32,9 +33,9 @@
             <ComboBoxItem Content="Entertainment"></ComboBoxItem>
             <ComboBoxItem Content="Other"></ComboBoxItem>
         </ComboBox>
-        <Label Content="Category" HorizontalAlignment="Left" Margin="292,101,0,0" VerticalAlignment="Top"/>
+        <Label Content="Category" HorizontalAlignment="Left" Margin="24,197,0,0" VerticalAlignment="Top"/>
 
         <Button Name="modify_button" Content="Apply" HorizontalAlignment="Center" Margin="5,5,5,15" VerticalAlignment="Bottom" Width="80" Click="modify_button_Click" />
-        <TextBlock Name="hint_text" Text="" TextWrapping="Wrap" HorizontalAlignment="Left" Margin="292,139,0,0" VerticalAlignment="Top" Height="47" Width="203"/>
+        <TextBlock Name="hint_text" Text="" TextWrapping="Wrap" HorizontalAlignment="Left" Margin="302,167,0,0" VerticalAlignment="Top" Height="80" Width="170"/>
     </Grid>
 </Window>
