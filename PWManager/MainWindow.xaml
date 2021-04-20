@@ -37,7 +37,22 @@
                     </DataGridHyperlinkColumn.ElementStyle>
                 </DataGridHyperlinkColumn>
                 <DataGridTextColumn Header="Login" Binding="{Binding login}" MinWidth="50" Width="auto"/>
-                <DataGridTextColumn Header="Password" Binding="{Binding password}" MinWidth="50" Width="*"/>
+                <DataGridTextColumn Header="Password" Binding="{Binding hidden_password}" MinWidth="50" Width="*">
+                    <DataGridTextColumn.CellStyle>
+                        <Style TargetType="DataGridCell">
+                            <Setter Property="ToolTip" Value="{Binding password}" />
+                        </Style>
+                    </DataGridTextColumn.CellStyle>
+                </DataGridTextColumn>
+                <DataGridTemplateColumn Header="Show" CanUserResize="False" MinWidth="40">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Name="show_pass_button" Width="40" Height="20" BorderBrush="White" Background="White" ToolTip="Show password" Click="show_pass_button_Click">
+                                <Image Name="eyeImg" Source="/Images/eye.png"/>
+                            </Button>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
                 <DataGridTemplateColumn Header="Fav" CanUserResize="False" MinWidth="20">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>

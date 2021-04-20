@@ -23,12 +23,10 @@ namespace PWManager
     /// </summary>
     public partial class MainWindow : Window
     {
-        
         private AddPasswordWindow addPasswordWindow;
         private MainService.MainServiceClient _service;
         private long user_id;
         
-
 
         public MainWindow(MainService.MainServiceClient service, long user_id)
         {
@@ -42,13 +40,35 @@ namespace PWManager
         }
 
 
-        private async void LoadItems(string search = "")
+        private async void LoadItems(string search = "", long id = -1)
         {
             var list = await _service.GetAllServiceCredentialsAsync(user_id);
 
             var sorted_list = list.Where(x => x.name.Contains(search)).OrderBy(e => e.is_favorite ? 0 : 1).ToList();
 
-            grid.ItemsSource = sorted_list;
+            List<Models.DataGridView> data = new List<Models.DataGridView>();
+
+            foreach (var elm in sorted_list)
+            {
+                Models.DataGridView model = new Models.DataGridView();
+                model.id = elm.id;
+                model.name = elm.name;
+                model.url = elm.url;
+                model.login = elm.login;
+                model.password = elm.password;
+
+                if (id != -1 && elm.id == id)
+                    model.hidden_password = elm.password;
+                else
+                    model.hidden_password = new String('*', model.password.Length);
+
+                model.is_favorite = elm.is_favorite;
+                model.user_id = elm.user_id;
+                model.category_id = elm.category_id;
+                data.Add(model);
+            }
+
+            grid.ItemsSource = data;
         }
 
         private void add_password_Click(object sender, RoutedEventArgs e)
@@ -63,7 +83,7 @@ namespace PWManager
 
         private async void favorite_button_Click(object sender, RoutedEventArgs e)
         {
-            PWManagerWCF.Models.service_credentials serv = (PWManagerWCF.Models.service_credentials)((Button)e.Source).DataContext;
+            Models.DataGridView serv = (Models.DataGridView)((Button)e.Source).DataContext;
             await _service.ChangeFavoriteStatusAsync(serv.id, serv.is_favorite);
             LoadItems();
         }
@@ -89,7 +109,7 @@ namespace PWManager
 
         private void modify_button_Click(object sender, RoutedEventArgs e)
         {
-            PWManagerWCF.Models.service_credentials serv = (PWManagerWCF.Models.service_credentials)((Button)e.Source).DataContext;
+            Models.DataGridView serv = (Models.DataGridView)((Button)e.Source).DataContext;
 
             ModifyServiceWindow modify = new ModifyServiceWindow(_service, serv);
             modify.Owner = Window.GetWindow(this);
@@ -100,7 +120,7 @@ namespace PWManager
 
         private async void delete_button_Click(object sender, RoutedEventArgs e)
         {
-            PWManagerWCF.Models.service_credentials serv = (PWManagerWCF.Models.service_credentials) ((Button) e.Source).DataContext;
+            Models.DataGridView serv = (Models.DataGridView) ((Button) e.Source).DataContext;
 
             MessageBoxResult result = MessageBox.Show("Are you sure you want to delete the following service:\n" + serv.name, "Delete service?", MessageBoxButton.YesNo, MessageBoxImage.Warning);
             if (result == MessageBoxResult.Yes)
@@ -113,6 +133,13 @@ namespace PWManager
         private void SearchText_TextChanged(object sender, TextChangedEventArgs e)
         {
             LoadItems(SearchText.Text);
+        }
+
+        private void show_pass_button_Click(object sender, RoutedEventArgs e)
+        {
+            Models.DataGridView serv = (Models.DataGridView)((Button)e.Source).DataContext;
+
+            LoadItems(SearchText.Text, serv.id);
         }
     }
 }

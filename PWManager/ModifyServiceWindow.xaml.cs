@@ -18,9 +18,9 @@ namespace PWManager
     public partial class ModifyServiceWindow : Window
     {
         private MainService.MainServiceClient _service;
-        private PWManagerWCF.Models.service_credentials _serv;
+        private Models.DataGridView _serv;
 
-        public ModifyServiceWindow(MainService.MainServiceClient service, PWManagerWCF.Models.service_credentials serv)
+        public ModifyServiceWindow(MainService.MainServiceClient service, Models.DataGridView serv)
         {
             InitializeComponent();
 
