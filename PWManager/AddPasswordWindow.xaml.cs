@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Matrixsoft.PwnedPasswords;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Windows;
@@ -67,6 +68,17 @@ namespace PWManager
             var pwd = new PasswordGenerator.Password(includeLowercase: true, includeUppercase: true, includeNumeric: true, includeSpecial: true, passwordLength: 21);
             var password = pwd.Next();
             password_textbox.Password = password;
+        }
+
+        private async void password_textbox_LostFocus(object sender, RoutedEventArgs e)
+        {
+            var client = new PwnedPasswordsClient();
+            var flag = await client.IsPasswordPwnedAsync(password_textbox.Password);
+            if (flag)
+            {
+                MessageBox.Show("Be careful, this password has been compromised in a data breach.\n We strongly advise you to change it",
+                    "Password is compromised", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
         }
     }
 }
