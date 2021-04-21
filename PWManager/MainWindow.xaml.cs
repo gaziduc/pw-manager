@@ -46,6 +46,21 @@ namespace PWManager
 
             var sorted_list = list.Where(x => x.name.ToLower().Contains(search.ToLower())).OrderBy(e => e.is_favorite ? 0 : 1).ToList();
 
+            /*List<PWManagerWCF.Models.service_credentials> final_list;
+            if (!CategoryComboBox.Text.Equals("All"))
+            {
+                Console.WriteLine(_service.GetCategoryFromIdAsync(sorted_list.First().category_id).Result.ToString());
+                Console.WriteLine(CategoryComboBox.Text);
+                final_list = sorted_list.Where(x =>
+                {
+                    string cat =  _service.GetCategoryFromIdAsync(x.category_id);
+
+                };
+            } else
+            {
+                final_list = sorted_list.ToList();
+            }*/
+
             List<Models.DataGridView> data = new List<Models.DataGridView>();
 
             foreach (var elm in sorted_list)
@@ -64,8 +79,14 @@ namespace PWManager
 
                 model.is_favorite = elm.is_favorite;
                 model.user_id = elm.user_id;
-                model.category_id = elm.category_id;
+                string cat = await _service.GetCategoryFromIdAsync(elm.category_id);
+                model.category_name = cat;
                 data.Add(model);
+            }
+
+            if (!CategoryComboBox.Text.Equals("All"))
+            {
+                data = data.Where(x => x.category_name.Equals(CategoryComboBox.Text)).ToList();
             }
 
             grid.ItemsSource = data;
@@ -140,6 +161,12 @@ namespace PWManager
             Models.DataGridView serv = (Models.DataGridView)((Button)e.Source).DataContext;
 
             LoadItems(SearchText.Text, serv.id);
+        }
+
+        private void CategoryComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (SearchText != null)
+                LoadItems(SearchText.Text);
         }
     }
 }

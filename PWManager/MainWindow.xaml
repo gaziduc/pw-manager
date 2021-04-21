@@ -17,6 +17,17 @@
 
         <Button Grid.Row="0" Name="add_password" Width="100" Content="Add a service..." Margin="10,10,0,10" HorizontalAlignment="Left" Click="add_password_Click"/>
 
+        <ComboBox Name="CategoryComboBox" SelectedIndex="0" HorizontalAlignment="Left" Margin="308,11,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="CategoryComboBox_SelectionChanged">
+            <ComboBoxItem Content="All"></ComboBoxItem>
+            <ComboBoxItem Content="Social Network"></ComboBoxItem>
+            <ComboBoxItem Content="Bank"></ComboBoxItem>
+            <ComboBoxItem Content="Messaging Service"></ComboBoxItem>
+            <ComboBoxItem Content="E-shop"></ComboBoxItem>
+            <ComboBoxItem Content="Entertainment"></ComboBoxItem>
+            <ComboBoxItem Content="Other"></ComboBoxItem>
+        </ComboBox>
+        <Label Content="Category: " HorizontalAlignment="Left" Margin="244,9,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.125,0.771"/>
+
         <Label Content="Search for service name:" HorizontalAlignment="Right" Margin="0,0,165,0" VerticalAlignment="Center"/>
         <TextBox Name="SearchText" HorizontalAlignment="Right" Margin="0,0,5,0" TextWrapping="Wrap" VerticalAlignment="Center" Width="155" Height="20" TextChanged="SearchText_TextChanged"/>
 

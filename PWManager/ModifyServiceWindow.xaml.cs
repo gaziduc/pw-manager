@@ -31,7 +31,7 @@ namespace PWManager
             login.Text = serv.login;
             password_textbox.Password = serv.password;
 
-            GetCategoryName(serv.category_id);
+            CategoryComboBox.Text = serv.category_name;
 
             _serv = serv;
         }

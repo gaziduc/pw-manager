@@ -14,7 +14,7 @@ namespace PWManager.Models
         public string password { get; set; }
         public string hidden_password { get; set; }
         public long user_id { get; set; }
-        public short category_id { get; set; }
+        public string category_name { get; set; }
         public bool is_favorite { get; set; }
     }
 }
