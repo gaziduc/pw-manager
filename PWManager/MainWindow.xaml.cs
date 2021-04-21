@@ -46,21 +46,6 @@ namespace PWManager
 
             var sorted_list = list.Where(x => x.name.ToLower().Contains(search.ToLower())).OrderBy(e => e.is_favorite ? 0 : 1).ToList();
 
-            /*List<PWManagerWCF.Models.service_credentials> final_list;
-            if (!CategoryComboBox.Text.Equals("All"))
-            {
-                Console.WriteLine(_service.GetCategoryFromIdAsync(sorted_list.First().category_id).Result.ToString());
-                Console.WriteLine(CategoryComboBox.Text);
-                final_list = sorted_list.Where(x =>
-                {
-                    string cat =  _service.GetCategoryFromIdAsync(x.category_id);
-
-                };
-            } else
-            {
-                final_list = sorted_list.ToList();
-            }*/
-
             List<Models.DataGridView> data = new List<Models.DataGridView>();
 
             foreach (var elm in sorted_list)
