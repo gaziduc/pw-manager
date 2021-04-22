@@ -70,7 +70,7 @@ namespace PWManager
             password_textbox.Password = password;
         }
 
-        private async void password_textbox_LostFocus(object sender, RoutedEventArgs e)
+        private async void Button_Click_1(object sender, RoutedEventArgs e)
         {
             var client = new PwnedPasswordsClient();
             var flag = await client.IsPasswordPwnedAsync(password_textbox.Password);
@@ -78,6 +78,10 @@ namespace PWManager
             {
                 MessageBox.Show("Be careful, this password has been compromised in a data breach.\n We strongly advise you to change it",
                     "Password is compromised", MessageBoxButton.OK, MessageBoxImage.Warning);
+            } else
+            {
+                MessageBox.Show("Your password is not in any of our data breach database",
+                    "Password is OK", MessageBoxButton.OK, MessageBoxImage.Information);
             }
         }
     }
