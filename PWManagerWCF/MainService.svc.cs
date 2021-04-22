@@ -5,6 +5,7 @@ using System.Runtime.Serialization;
 using System.Security.Cryptography;
 using System.ServiceModel;
 using System.Text;
+using Elskom.Generic.Libs;
 using PWManagerWCF.Models;
 
 namespace PWManagerWCF
@@ -28,7 +29,18 @@ namespace PWManagerWCF
 
         public List<service_credentials> GetAllServiceCredentials(long user_id)
         {
-            return ents.ServiceCredentials.Where(x => x.user_id == user_id).ToList();
+            var services = ents.ServiceCredentials.Where(x => x.user_id == user_id).ToList();
+
+            var user = ents.Users.FirstOrDefault(users => users.id == user_id);
+            string masterPW = user.password;
+            BlowFish blowfish = new BlowFish(masterPW);
+
+            foreach (var service in services)
+            {
+                service.password = blowfish.DecryptECB(service.password);
+            }
+
+            return services;
         }
 
         public bool LoginExists(string login)
@@ -75,13 +87,16 @@ namespace PWManagerWCF
         {
             try
             {
+                var user = ents.Users.FirstOrDefault(users => users.id == user_id);
+                string masterPW = user.password;
+                BlowFish blowfish = new BlowFish(masterPW);
 
                 ents.ServiceCredentials.Add(new service_credentials
                 {
                     name = name,
                     url = url,
                     login = login,
-                    password = password,
+                    password = blowfish.EncryptECB(password),
                     user_id = user_id,
                     category_id = GetIdFromCategoryString(category),
                     is_favorite = false
@@ -144,7 +159,7 @@ namespace PWManagerWCF
             return category_id;
         }
 
-        public bool UpdateService(long id, string name, string url, string login, string password, string category)
+        public bool UpdateService(long id, string name, string url, string login, string password, string category, long user_id)
         {
             try
             {
@@ -153,10 +168,14 @@ namespace PWManagerWCF
                 if (serv == null)
                     return false;
 
+                var user = ents.Users.FirstOrDefault(users => users.id == user_id);
+                string masterPW = user.password;
+                BlowFish blowfish = new BlowFish(masterPW);
+
                 serv.name = name;
                 serv.url = url;
                 serv.login = login;
-                serv.password = password;
+                serv.password = blowfish.EncryptECB(password);
                 serv.category_id = GetIdFromCategoryString(category);
 
                 ents.SaveChanges();

@@ -41,7 +41,7 @@ namespace MainService
         System.Threading.Tasks.Task<string> GetCategoryFromIdAsync(short id);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMainService/UpdateService", ReplyAction="http://tempuri.org/IMainService/UpdateServiceResponse")]
-        System.Threading.Tasks.Task<bool> UpdateServiceAsync(long id, string name, string url, string login, string password, string category);
+        System.Threading.Tasks.Task<bool> UpdateServiceAsync(long id, string name, string url, string login, string password, string category, long user_id);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMainService/DeleteService", ReplyAction="http://tempuri.org/IMainService/DeleteServiceResponse")]
         System.Threading.Tasks.Task<bool> DeleteServiceAsync(long id);
@@ -137,9 +137,9 @@ namespace MainService
             return base.Channel.GetCategoryFromIdAsync(id);
         }
         
-        public System.Threading.Tasks.Task<bool> UpdateServiceAsync(long id, string name, string url, string login, string password, string category)
+        public System.Threading.Tasks.Task<bool> UpdateServiceAsync(long id, string name, string url, string login, string password, string category, long user_id)
         {
-            return base.Channel.UpdateServiceAsync(id, name, url, login, password, category);
+            return base.Channel.UpdateServiceAsync(id, name, url, login, password, category, user_id);
         }
         
         public System.Threading.Tasks.Task<bool> DeleteServiceAsync(long id)

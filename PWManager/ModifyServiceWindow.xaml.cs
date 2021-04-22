@@ -46,7 +46,7 @@ namespace PWManager
 
         private async void modify_button_Click(object sender, RoutedEventArgs e)
         {
-            await _service.UpdateServiceAsync(_serv.id, service_name.Text, url.Text, login.Text, password_textbox.Password, CategoryComboBox.Text);
+            await _service.UpdateServiceAsync(_serv.id, service_name.Text, url.Text, login.Text, password_textbox.Password, CategoryComboBox.Text, _serv.user_id);
             Close();
         }
 

@@ -37,7 +37,7 @@ namespace PWManagerWCF
         string GetCategoryFromId(short id);
 
         [OperationContract]
-        bool UpdateService(long id, string name, string url, string login, string password, string category);
+        bool UpdateService(long id, string name, string url, string login, string password, string category, long user_id);
 
         [OperationContract]
         bool DeleteService(long id);
