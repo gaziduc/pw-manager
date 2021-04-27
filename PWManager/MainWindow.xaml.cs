@@ -44,7 +44,13 @@ namespace PWManager
         {
             var list = await _service.GetAllServiceCredentialsAsync(user_id);
 
-            var sorted_list = list.Where(x => x.name.ToLower().Contains(search.ToLower())).OrderBy(e => e.is_favorite ? 0 : 1).ToList();
+            if (!list.Item1)
+            {
+                MessageBox.Show("Error while getting all services/passwords.", "PW Manager", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+               
+            var sorted_list = list.Item2.Where(x => x.name.ToLower().Contains(search.ToLower())).OrderBy(e => e.is_favorite ? 0 : 1).ToList();
 
             List<Models.DataGridView> data = new List<Models.DataGridView>();
 

@@ -1,10 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.Serialization;
-using System.Security.Cryptography;
-using System.ServiceModel;
-using System.Text;
 using Elskom.Generic.Libs;
 using PWManagerWCF.Models;
 
@@ -27,11 +23,15 @@ namespace PWManagerWCF
         }
 
 
-        public List<service_credentials> GetAllServiceCredentials(long user_id)
+        public (bool, List<service_credentials>) GetAllServiceCredentials(long user_id)
         {
             var services = ents.ServiceCredentials.Where(x => x.user_id == user_id).ToList();
 
             var user = ents.Users.FirstOrDefault(users => users.id == user_id);
+
+            if (user == null)
+                return (false, null);
+
             string masterPW = user.password;
             BlowFish blowfish = new BlowFish(masterPW);
 
@@ -40,7 +40,7 @@ namespace PWManagerWCF
                 service.password = blowfish.DecryptECB(service.password);
             }
 
-            return services;
+            return (true, services);
         }
 
         public bool LoginExists(string login)

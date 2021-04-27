@@ -13,7 +13,7 @@ namespace PWManagerWCF
     public interface IMainService
     {
         [OperationContract]
-        List<service_credentials> GetAllServiceCredentials(long user_id);
+        (bool, List<service_credentials>) GetAllServiceCredentials(long user_id);
 
         [OperationContract]
         bool LoginExists(string login);

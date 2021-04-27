@@ -13,9 +13,9 @@
       "*, MainService"
     ],
     "references": [
-      "C:\\Users\\PC\\Desktop\\pw-manager\\PWManager\\bin\\Debug\\netcoreapp3.1\\BlowFish.dll",
-      "C:\\Users\\PC\\Desktop\\pw-manager\\PWManager\\bin\\Debug\\netcoreapp3.1\\EntityFramework.dll",
-      "C:\\Users\\PC\\Desktop\\pw-manager\\PWManager\\bin\\Debug\\netcoreapp3.1\\PWManagerWCF.dll",
+      "C:\\Users\\Gazi\\Documents\\GitHub\\pw-manager\\PWManager\\bin\\Debug\\netcoreapp3.1\\BlowFish.dll",
+      "C:\\Users\\Gazi\\Documents\\GitHub\\pw-manager\\PWManager\\bin\\Debug\\netcoreapp3.1\\EntityFramework.dll",
+      "C:\\Users\\Gazi\\Documents\\GitHub\\pw-manager\\PWManager\\bin\\Debug\\netcoreapp3.1\\PWManagerWCF.dll",
       "Matrixsoft.PwnedPasswords, {Matrixsoft.PwnedPasswords, 1.1.0}",
       "Microsoft.AspNetCore.Authentication, {Microsoft.AspNetCore.Authentication, 2.2.0}",
       "Microsoft.AspNetCore.Authentication.Abstractions, {Microsoft.AspNetCore.Authentication.Abstractions, 2.2.0}",
