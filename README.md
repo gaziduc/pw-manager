@@ -1,5 +1,7 @@
 # pw-manager
 
+A password manager program in C# with .NET
+
 ## Installation et lancement des scripts de base de données
 
 Ouvrez la solution PWManager.sln et allez dans l'explorateur de solutions,
