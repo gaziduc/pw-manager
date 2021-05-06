@@ -90,7 +90,7 @@ namespace PWManager
             var flag = await client.IsPasswordPwnedAsync(password_textbox.Password);
             if (flag)
             {
-                MessageBox.Show("Be careful, this password has been compromised in a data breach.\n We strongly advise you to change it",
+                MessageBox.Show("Be careful, this password has been compromised in a data breach.\nWe strongly advise you to change it",
                     "Password is compromised", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
             else
