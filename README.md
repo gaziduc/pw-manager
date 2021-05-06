@@ -1,4 +1,6 @@
-# INSTALLATION ET LANCEMENT DES SCRIPTS DE DB
+# pw-manager
+
+## Installation et lancement des scripts de base de données
 
 Ouvrez la solution PWManager.sln et allez dans l'explorateur de solutions,
 puis faites clic-droit sur le projet "Database". Cliquez ensuite sur "Publier".
@@ -13,11 +15,9 @@ Explication: Cela créé les schémas de tables de base de données de SQL Serve
 De plus, le contenu du script Script.PostDeployment1.sql est executé.
 Ce dernier ajoute le contenu de la table "categories" dans la base de données.
 
+## Déploiement du service .svc (projet WCF) sous IIS
 
-
-# DEPLOIEMENT DU PROJET WCF SOUS IIS
-
-## 1) Installation de IIS
+### Installation de IIS
 
 Dans un premier temps il faut installer IIS sur sa machine en suivant la
 documentation pour le système d'exploitation adapté.
@@ -31,7 +31,7 @@ Pour Windows 10 :
 - Cliquez sur OK.
 
 
-## 2) Copie du projet sous IIS
+### Copie du projet sous IIS
 
 Copiez le dossier du projet WCF "PWManagerWCF" dans le dossier suivant :
 C:/inetpub/wwwroot.
@@ -49,7 +49,7 @@ Windows. Si c'est déjà le cas et que les ".svc" ne sont toujours pas
 reconnus allez dans la section DEPANNAGE ".svc not recognized".
 
 
-## 3) Lancer le service sous IIS
+### Lancer le service sous IIS
 
 Une fois que vous avez cliqué que 'Content View' vous devriez voir le 
 fichier 'MainService.svc' qui correspond au service permettant de
@@ -58,7 +58,7 @@ menu de droite. Une page web devrait s'ouvrir dans votre navigateur,
 copiez le lien de l'url dans le presse papier.
 
 
-## 4) Liaison du service WCF avec l'interface WPF
+### Liaison du service WCF avec l'interface WPF
 
 Maintenant que nous avons déployé notre service WCF sur IIS nous allons
 le lier avec le projet WPF. Pour se faire faites un clic droit sur le 
@@ -69,11 +69,9 @@ apparaitre. Renommez le namespace en "MainService" puis cliquez sur "OK".
 Cliquez sur Suivant puis sélectionnez "System.Collection.Generic.List"
 pour le type de collection. Enfin cliquez sur "Terminer".
 
+## Dépannage déploiement WCF (problèmes rencontrés)
 
-
-# DEPANNAGE DEPLOIEMENT WCF (problèmes rencontrés)
-
-## 1) Troubleshooting "inetpub/wwwroot does not exist"
+### Troubleshooting "inetpub/wwwroot does not exist"
 
 - open IIS Manager
 - right click Sites node under your machine in the Connections tree on the left side and click Add Website
@@ -82,21 +80,18 @@ pour le type de collection. Enfin cliquez sur "Terminer".
 - set Physical path to %SystemDrive%\inetpub\wwwroot
 - leave Binding and everything else as is
 
-
-## 2) Troubleshooting ".svc not recognized"
+### Troubleshooting ".svc not recognized"
 
 Seulement si vous vous êtes assuré de bien avoir intégrer les bonnes dépendances
 (.NET Framework 4.5 > WCF Services > HTTP Activation) utilisez la méthode suivante :
 - Ajouter l'extension MIME suivante: .svc, MIME type: application/octet-stream
 - Ajouter le Request path suivant: *.svc, Type: System.ServiceModel.Activation.HttpHandler, Name: svc-Integrated
 
+### Troubleshooting "changement non pris en compte"
 
-## 3) Troubleshooting "changement non pris en compte"
+Essayez de regénérer le projet WCF.
 
-Essayez de regénérer le projet WCF
-
-
-## 4) Troubleshooting "Échec de l'ouverture de session de l'utilisateur 'IIS APP POOL\DefaultApp Pool"
+### Troubleshooting "Échec de l'ouverture de session de l'utilisateur 'IIS APP POOL\DefaultApp Pool"
 
 Si vous rencontrez une erreur de connection à la base de données SQL Server
 essayez la méthode suivante:
@@ -105,9 +100,7 @@ essayez la méthode suivante:
 - You can then right click the login for the app pool, select Properties and select "User Mapping".
 - Check the appropriate database, and the appropriate roles: db_datareader and db_datawriter.
 
-
-
-# DEPLOIEMENT DU PROJET WPF
+## Déploiement projet WPF
 
 Ouvrez la solution PWManager.sln, puis faites clic-droit sur le projet PWManager.
 Cliquez sur "Publish" dans le menu contextuel. Cela générera l'executable que vous
@@ -115,9 +108,7 @@ pourrez ensuite lancer (par example en double-cliquant sur le .exe généré dan
 l'explorateur de fichiers, dans bin/Release/netcoreapp3.1/publish/ ou
 bin/Debug/netcoreapp3.1/publish/)
 
-
-
-# PROJET TESTS UNITAIRES
+## Projet tests unitaires
 
 Pour lancer les tests unitaires vous devez avoir au préalable déployer le projet WCF.
 Les "connected services" doivent être connectés au WCF déployé, pour cela allez voir
